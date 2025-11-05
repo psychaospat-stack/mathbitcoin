@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🪙 Math Bitcoin</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="header__title">🪙 Math Bitcoin</h1>
+            <p class="header__subtitle">Gagne de vrais satoshis en améliorant ton calcul mental!</p>
+        </header>
+
+        <!-- Dashboard de statistiques -->
+        <section class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-card stat-card--primary">
+                    <div class="stat-card__icon">₿</div>
+                    <div class="stat-card__value" id="totalSatoshis">1250</div>
+                    <div class="stat-card__label">Satoshis Gagnés</div>
+                </div>
+                <div class="stat-card stat-card--secondary">
+                    <div class="stat-card__icon">📊</div>
+                    <div class="stat-card__value" id="totalQuestions">47</div>
+                    <div class="stat-card__label">Questions Répondues</div>
+                </div>
+                <div class="stat-card stat-card--success">
+                    <div class="stat-card__icon">🎯</div>
+                    <div class="stat-card__value" id="accuracy">89%</div>
+                    <div class="stat-card__label">Précision</div>
+                </div>
+                <div class="stat-card stat-card--warning">
+                    <div class="stat-card__icon">💰</div>
+                    <div class="stat-card__value" id="adRevenue">$0.63</div>
+                    <div class="stat-card__label">Revenus Pub</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Barre de progression -->
+        <section class="progress-section">
+            <div class="progress-bar">
+                <div class="progress-bar__fill" id="progressFill" style="width: 89%"></div>
+            </div>
+            <p class="progress-text">Niveau: Expert Bitcoin Mathématicien</p>
+        </section>
+
+        <!-- Configuration ZBD -->
+        <section class="config-section">
+            <h2 class="config-section__title">🎮 Configuration ZBD</h2>
+            <div class="config-card">
+                <div class="form-group">
+                    <label class="form-label" for="zbdGamertag">Gamertag ZBD</label>
+                    <input type="text" id="zbdGamertag" class="form-control" value="psychaospatf8095a04" placeholder="Votre gamertag ZBD">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="zbdApiKey">Clé API ZBD (Développeur)</label>
+                    <input type="password" id="zbdApiKey" class="form-control" placeholder="Votre clé API ZBD">
+                </div>
+                <div class="config-actions">
+                    <button class="btn btn--primary" id="saveZbdConfig">💾 Sauvegarder Config ZBD</button>
+                    <div class="status-indicator" id="zbdStatus">
+                        <div class="status-dot status-dot--success"></div>
+                        <span>Configuré</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Configuration Publicités -->
+        <section class="config-section">
+            <h2 class="config-section__title">📺 Configuration Publicités</h2>
+            <div class="config-card">
+                <div class="form-group">
+                    <label class="form-label" for="adsenseId">ID Google AdSense</label>
+                    <input type="text" id="adsenseId" class="form-control" placeholder="ca-pub-xxxxxxxxxx">
+                </div>
+                <div class="config-actions">
+                    <button class="btn btn--primary" id="saveAdConfig">💾 Sauvegarder Config Pub</button>
+                    <div class="status-indicator" id="adStatus">
+                        <div class="status-dot status-dot--error"></div>
+                        <span>Non configuré</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Revenus Développeur -->
+        <section class="revenue-section">
+            <div class="revenue-card">
+                <h3>💰 Vos Revenus Développeur (50%)</h3>
+                <div class="revenue-amount" id="developerEarnings">$0.315</div>
+            </div>
+        </section>
+
+        <!-- Jeu Principal -->
+        <section class="game-section">
+            <div class="game-card">
+                <button class="btn btn--primary btn--lg btn--full-width" id="newQuestionBtn">🎯 Nouvelle Question</button>
+                
+                <div class="question-container hidden" id="questionContainer">
+                    <div class="question-display" id="questionDisplay">Combien font 12 + 8 ?</div>
+                    <div class="form-group">
+                        <input type="number" id="answerInput" class="form-control" placeholder="Votre réponse">
+                    </div>
+                    <button class="btn btn--success" id="verifyBtn">✅ Vérifier</button>
+                    <div class="question-timer" id="questionTimer">⏱️ 0s</div>
+                </div>
+
+                <div class="feedback-container hidden" id="feedbackContainer">
+                    <div class="feedback-message" id="feedbackMessage">Excellent calcul mental !</div>
+                    <div class="reward-animation" id="rewardAnimation">+25 sats ₿</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Publicité -->
+        <section class="ad-section">
+            <div class="ad-card">
+                <h3>📺 Regarder une Publicité</h3>
+                <p>Regarde une courte publicité pour gagner des satoshis bonus et soutenir l'application!</p>
+                <button class="btn btn--warning btn--lg" id="watchAdBtn">🎬 Regarder Pub (+50 sats)</button>
+            </div>
+        </section>
+
+        <!-- Actions -->
+        <section class="actions-section">
+            <div class="actions-grid">
+                <button class="btn btn--secondary" id="viewStatsBtn">📊 Voir Statistiques</button>
+                <button class="btn btn--outline" id="resetBtn">🔄 Reset Complet</button>
+            </div>
+        </section>
+
+        <!-- Modal Statistiques -->
+        <div class="modal hidden" id="statsModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>📊 Statistiques Détaillées</h2>
+                    <button class="modal-close" id="closeStatsModal">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="detailed-stats">
+                        <div class="stat-row">
+                            <span>Total Questions:</span>
+                            <span id="modalTotalQuestions">47</span>
+                        </div>
+                        <div class="stat-row">
+                            <span>Réponses Correctes:</span>
+                            <span id="modalCorrectAnswers">42</span>
+                        </div>
+                        <div class="stat-row">
+                            <span>Réponses Incorrectes:</span>
+                            <span id="modalIncorrectAnswers">5</span>
+                        </div>
+                        <div class="stat-row">
+                            <span>Taux de Réussite:</span>
+                            <span id="modalSuccessRate">89%</span>
+                        </div>
+                        <div class="stat-row">
+                            <span>Temps Moyen/Question:</span>
+                            <span id="modalAvgTime">8.3s</span>
+                        </div>
+                        <div class="stat-row">
+                            <span>Satoshis Totaux:</span>
+                            <span id="modalTotalSats">1250 ₿</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast Notifications -->
+        <div class="toast-container" id="toastContainer"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
