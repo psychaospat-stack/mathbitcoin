@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3982413989310016" crossorigin="anonymous"></script>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
 <title>MathBitcoin — Le Langage de l'Univers</title>
@@ -241,7 +242,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ex
       <div class="profile-avatar" id="profileAvatar">?</div>
       <div class="profile-info">
         <div class="profile-name" id="profileName">Explorateur</div>
-        <div class="profile-stats">Niveau <span id="profileLvl">1</span> · <span id="profileQ">0</span> questions</div>
+        <div class="profile-stats" id="profileStats">Niveau <span id="profileLvl">1</span> · <span id="profileQ">0</span> questions</div>
       </div>
       <div class="profile-sats" id="profileSats">0 ⚡</div>
     </div>
@@ -258,6 +259,9 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ex
       </div>
       <div class="menu-btn secret" id="secretBtn" onclick="showSecret()" style="display:none;">
         <span class="btn-icon">⬡</span>Tableau caché
+      </div>
+      <div class="menu-btn" onclick="resetLevel()" style="border-color:rgba(255,80,80,0.25);color:rgba(255,100,100,0.6);font-size:10px;">
+        <span class="btn-icon">↺</span>Recommencer au niveau 1
       </div>
     </div>
   </div>
@@ -277,6 +281,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ex
     <div class="hud-center">
       <div class="hud-lvl">Niveau <span id="lvlDisp">1</span></div>
       <div class="hud-lvlname" id="lvlNameDisp">Le Pico</div>
+      <div style="font-family:'Exo 2',sans-serif;font-size:9px;letter-spacing:2px;color:rgba(255,216,111,0.28);text-transform:uppercase;" id="lvlGradeDisp">Primaire 1</div>
     </div>
     <div class="hud-streak" id="streakDisp"></div>
   </div>
@@ -324,8 +329,9 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ex
   <div class="lvlup-card">
     <div class="lvlup-ring"><div class="lvlup-num" id="luNum">2</div></div>
     <div class="lvlup-label">nouveau niveau</div>
-    <div class="lvlup-name" id="luName">La Spirale</div>
-    <div class="lvlup-desc" id="luDesc">L'univers s'expand. Tu vois plus loin.</div>
+    <div class="lvlup-name" id="luName">Le Nano</div>
+    <div style="font-family:'Orbitron',sans-serif;font-size:9px;letter-spacing:3px;color:rgba(255,216,111,0.35);text-transform:uppercase;margin-bottom:8px;" id="luGrade">Primaire 2</div>
+    <div class="lvlup-desc" id="luDesc">L\'univers s\'expand. Tu vois plus loin.</div>
     <div class="ov-btn" onclick="closeLvlUp()">continuer →</div>
   </div>
 </div>
@@ -385,9 +391,11 @@ function playTone(freq,dur,type='sine',vol=0.15,delay=0){
   }catch(e){}
 }
 function sndCorrect(){
-  playTone(523,0.12,'sine',0.12);
-  playTone(659,0.12,'sine',0.10,0.1);
-  playTone(784,0.18,'sine',0.10,0.2);
+  const s=Math.min(G.streak,8);
+  const base=523+s*40;
+  playTone(base,0.12,'sine',0.12);
+  playTone(base*1.26,0.12,'sine',0.10,0.1);
+  playTone(base*1.5,0.18,'sine',0.10,0.2);
 }
 function sndWrong(){
   playTone(220,0.08,'sawtooth',0.08);
@@ -423,7 +431,20 @@ function getSave(){
   if(!d.secretsFound)d.secretsFound=[];
   if(!d.dailyDate)d.dailyDate='';
   if(!d.dailyDone)d.dailyDone=false;
+  if(!d.dayStreak)d.dayStreak=0;
+  if(!d.lastLoginDate)d.lastLoginDate='';
   return d;
+}
+
+function checkDayStreak(){
+  const d=getSave();
+  const today=new Date().toDateString();
+  const yesterday=new Date(Date.now()-86400000).toDateString();
+  if(d.lastLoginDate===today)return;
+  let streak=d.dayStreak||0;
+  if(d.lastLoginDate===yesterday)streak++;
+  else if(d.lastLoginDate!==today)streak=1;
+  patchSave({dayStreak:streak,lastLoginDate:today});
 }
 function patchSave(obj){
   const d=getSave();Object.assign(d,obj);writeSave(d);return d;
@@ -437,6 +458,10 @@ function renderProfile(){
   document.getElementById('profileSats').textContent=d.sats+'⚡';
   document.getElementById('profileLvl').textContent=d.level+1;
   document.getElementById('profileQ').textContent=d.totalQ;
+  const ds=d.dayStreak||0;
+  document.getElementById('profileStats').innerHTML=
+    `Niveau <span id="profileLvl">${d.level+1}</span> · <span id="profileQ">${d.totalQ}</span> questions`+
+    (ds>1?` · <span style="color:#ffd86f;">🔥 ${ds} jours</span>`:'');
   // Daily badge
   const today=new Date().toDateString();
   const done=d.dailyDate===today&&d.dailyDone;
@@ -509,30 +534,67 @@ function startWormhole(cb){
   setTimeout(()=>{if(cb)cb();},1900);
 }
 
-// ══════════ LEVELS ══════════
+// ══════════ LEVELS — Curriculum Québec P1→S5 ══════════
 const LEVELS=[
-  {name:'Le Pico',    desc:'L\'univers naît d\'un point.',   ops:['+'],       max:10,qpl:8 },
-  {name:'Le Cercle',  desc:'La première forme parfaite.',    ops:['+','-'],   max:15,qpl:8 },
-  {name:'La Spirale', desc:'Phi structure toute croissance.',ops:['+','-'],   max:20,qpl:10},
-  {name:'Le Triangle',desc:'La stabilité vient de 3 points.',ops:['+','-','×'],max:12,qpl:10},
-  {name:'La Symétrie',desc:'L\'univers aime l\'équilibre.',  ops:['+','-','×'],max:15,qpl:10},
-  {name:'Le Portail', desc:'Tu traverses vers plus loin.',   ops:['+','-','×','÷'],max:12,qpl:12},
-  {name:'La Constellation',desc:'Les étoiles obéissent aux maths.',ops:['+','-','×','÷'],max:20,qpl:12},
-  {name:'L\'Univers', desc:'Tu lis le langage du cosmos.',   ops:['+','-','×','÷'],max:25,qpl:15},
+  // ── PRIMAIRE ──
+  {name:'Le Pico',   grade:'Primaire 1', desc:'L\'univers naît d\'un point. Tu additionnes les premières étoiles.',          ops:['+'],              max:10,  qpl:8 },
+  {name:'Le Nano',   grade:'Primaire 2', desc:'L\'espace se dilate. Addition et soustraction jusqu\'à 20.',                  ops:['+','-'],          max:20,  qpl:8 },
+  {name:'Le Micro',  grade:'Primaire 3', desc:'Les tables de multiplication cachent l\'ordre de l\'univers.',                ops:['+','-','×'],      max:12,  qpl:10},
+  {name:'Le Kilo',   grade:'Primaire 4', desc:'Division et fractions — la géométrie des constellations.',                   ops:['+','-','×','÷'],  max:12,  qpl:10},
+  {name:'Le Méga',   grade:'Primaire 5', desc:'Les décimaux et les grands nombres fractionnent la lumière.',                 ops:['+','-','×','÷'],  max:20,  qpl:10},
+  {name:'Le Giga',   grade:'Primaire 6', desc:'Pourcentages, ratios — tu mesures l\'espace entre les étoiles.',             ops:['+','-','×','÷'],  max:50,  qpl:12},
+  // ── SECONDAIRE ──
+  {name:'Le Téra',   grade:'Secondaire 1',desc:'L\'algèbre révèle l\'invisible. Les entiers négatifs existent.',            ops:['+','-','×','÷'],  max:100, qpl:12},
+  {name:'Le Péta',   grade:'Secondaire 2',desc:'Les équations modélisent la trajectoire des planètes.',                     ops:['+','-','×','÷'],  max:144, qpl:12},
+  {name:'L\'Exa',    grade:'Secondaire 3',desc:'Statistiques et probabilités — la physique des étoiles s\'ouvre.',          ops:['+','-','×','÷'],  max:200, qpl:15},
+  {name:'Le Zetta',  grade:'Secondaire 4',desc:'Les fonctions quadratiques tracent les orbites célestes.',                  ops:['+','-','×','÷'],  max:300, qpl:15},
+  {name:'Le Yotta',  grade:'Secondaire 5',desc:'Tu lis le code source de l\'univers. Tu es Bitcoin.',                       ops:['+','-','×','÷'],  max:500, qpl:15},
 ];
 const DOMAINS={'+':'addition','-':'soustraction','×':'multiplication','÷':'division'};
 
-// ══════════ MATH FACTS ══════════
+// ══════════ MATH & BITCOIN FACTS ══════════
 const FACTS=[
-  {s:'π',t:'le nombre π',tx:'Pi est partout : dans les cercles, les ondes, la lumière. Il est le même partout dans l\'univers, des atomes aux galaxies.'},
-  {s:'φ',t:'le nombre d\'or',tx:'Phi (1.618...) gouverne la spirale des coquillages, la disposition des graines de tournesol, et la croissance des galaxies.'},
-  {s:'0',t:'le zéro',tx:'Le zéro n\'existait pas dans l\'arithmétique antique. Les Mayas l\'ont inventé vers 350 apr. J.-C. — une révolution qui a rendu l\'algèbre possible.'},
-  {s:'∞',t:'l\'infini',tx:'Certains infinis sont plus grands que d\'autres. L\'infini des nombres réels est strictement plus grand que l\'infini des entiers.'},
-  {s:'√2',t:'la racine de 2',tx:'Les Babyloniens connaissaient √2 il y a 3700 ans, gravé sur une tablette d\'argile. C\'est la diagonale d\'un carré de côté 1.'},
-  {s:'∑',t:'les sommes',tx:'Gauss a calculé 1+2+...+100 = 5050 à 7 ans en quelques secondes. Il avait vu que chaque paire (1+100, 2+99...) valait 101.'},
-  {s:'e',t:'le nombre e',tx:'e = 2.718... est la base de la croissance naturelle. Les populations, les intérêts composés, et la radioactivité suivent tous e.'},
-  {s:'i',t:'le nombre imaginaire',tx:'i = √(-1) n\'existe pas sur la droite des nombres réels — mais il permet de décrire les ondes électromagnétiques et les circuits électroniques.'},
+  // Mathématiques
+  {s:'π',  t:'le nombre π',          tx:'Pi est partout : dans les cercles, les ondes, la lumière. Il est identique partout dans l\'univers, des atomes aux galaxies.'},
+  {s:'φ',  t:'le nombre d\'or',      tx:'Phi (1.618...) gouverne la spirale des coquillages, la disposition des graines de tournesol, et la structure des galaxies.'},
+  {s:'0',  t:'le zéro',              tx:'Le zéro n\'existait pas dans l\'arithmétique antique. Les Mayas l\'ont inventé vers 350 apr. J.-C. — une révolution qui a rendu l\'algèbre possible.'},
+  {s:'∞',  t:'l\'infini',            tx:'Certains infinis sont plus grands que d\'autres. L\'infini des nombres réels est strictement plus grand que l\'infini des entiers naturels.'},
+  {s:'√2', t:'la racine de 2',       tx:'Les Babyloniens connaissaient √2 il y a 3700 ans, gravé sur une tablette d\'argile. C\'est la diagonale d\'un carré de côté 1.'},
+  {s:'∑',  t:'les sommes de Gauss',  tx:'Gauss a calculé 1+2+...+100 = 5050 à 7 ans en quelques secondes. Il avait vu que chaque paire (1+100, 2+99...) valait toujours 101.'},
+  {s:'e',  t:'le nombre e',          tx:'e = 2.718... est la base de la croissance naturelle. Les populations, les intérêts composés et la radioactivité suivent tous ce nombre.'},
+  {s:'i',  t:'le nombre imaginaire', tx:'i = √(-1) n\'existe pas sur la droite des réels — mais il permet de décrire les ondes électromagnétiques et les circuits électroniques.'},
+  {s:'p',  t:'les nombres premiers', tx:'Les nombres premiers (2, 3, 5, 7, 11...) sont les atomes des mathématiques. Chaque entier peut être décomposé en produit de nombres premiers — de façon unique.'},
+  {s:'%',  t:'les pourcentages',     tx:'100% vient du latin «per centum» : «pour cent». Les Romains calculaient déjà des taxes de 1/100. Aujourd\'hui, les pourcentages gouvernent finance, science et économie.'},
+  {s:'∅',  t:'l\'ensemble vide',     tx:'L\'ensemble vide {} ne contient rien — et pourtant il est contenu dans tous les ensembles. Un rien mathématique qui structure toute la logique.'},
+  {s:'Δ',  t:'la différence',        tx:'Le symbole Δ (delta) signifie «différence» ou «variation». En physique, Δv est la variation de vitesse. En finance, c\'est le changement de prix.'},
+  {s:'1',  t:'le un',                tx:'1 n\'est ni premier ni composé — il est l\'unité, la base de tout. Sans le 1, aucun autre nombre n\'existerait. C\'est la graine de l\'univers arithmétique.'},
+  {s:'12', t:'la douzaine',          tx:'Les Babyloniens comptaient en base 12 parce que 12 est divisible par 1, 2, 3, 4, 6 et 12. C\'est pour ça qu\'on a 12 mois, 12 heures, 60 minutes.'},
+  // Bitcoin & Satoshi
+  {s:'₿',  t:'Bitcoin',              tx:'Bitcoin a été créé en 2008 par Satoshi Nakamoto. Il n\'y aura jamais plus de 21 millions de BTC — cette limite est inscrite dans le code pour toujours.'},
+  {s:'⚡', t:'le satoshi',           tx:'1 Bitcoin = 100 000 000 satoshis. Le satoshi est la plus petite unité de Bitcoin. Si 1 BTC vaut 100 000$, 1 satoshi vaut 0.1 centime.'},
+  {s:'⛏',  t:'le minage',           tx:'Les mineurs de Bitcoin résolvent des équations mathématiques pour valider les transactions. En échange, ils reçoivent des satoshis — comme une récompense cosmique.'},
+  {s:'#',  t:'la blockchain',        tx:'La blockchain Bitcoin est une chaîne de blocs mathématiquement liés. Changer un seul bloc invaliderait toute la chaîne — une structure aussi solide que les lois de la physique.'},
+  {s:'½',  t:'le halving',           tx:'Tous les 210 000 blocs (~4 ans), la récompense des mineurs est divisée par 2. Ce «halving» rend Bitcoin plus rare avec le temps — une déflation mathématiquement programmée.'},
+  {s:'🔑', t:'la cryptographie',     tx:'Bitcoin utilise la cryptographie à courbe elliptique. Trouver ta clé privée en cassant l\'algorithme prendrait plus de temps que l\'âge de l\'univers — même avec un superordinateur.'},
+  {s:'21', t:'21 millions',          tx:'21 millions de bitcoins maximum. Pas un de plus. Cette limite mathématique est la raison pour laquelle Bitcoin est rare — comme l\'or, mais vérifiable par n\'importe qui.'},
+  {s:'∑',  t:'les nodes',            tx:'Le réseau Bitcoin compte des milliers de nœuds (nodes) qui vérifient chaque transaction indépendamment. Pas de banque centrale — les mathématiques font foi.'},
+  {s:'🌍', t:'la décentralisation',  tx:'Bitcoin fonctionne sans serveur central. Chaque transaction est validée par des milliers d\'ordinateurs dans le monde. Aucun gouvernement ne peut l\'éteindre.'},
+  {s:'⏱',  t:'les 10 minutes',      tx:'Un nouveau bloc Bitcoin est créé toutes les ~10 minutes en moyenne. Si les mineurs accélèrent, la difficulté augmente automatiquement pour maintenir ce rythme.'},
+  {s:'🧮', t:'la preuve de travail', tx:'Pour ajouter un bloc à la blockchain, un mineur doit trouver un nombre qui satisfait une équation mathématique très difficile. Ce «Proof of Work» coûte de l\'énergie réelle.'},
+  {s:'💡', t:'les satoshis Lightning',tx:'Le Lightning Network permet d\'envoyer des satoshis en moins d\'une seconde, avec des frais quasi nuls. Des mathématiques de canaux de paiement rendent ça possible.'},
+  {s:'🔢', t:'le SHA-256',           tx:'Bitcoin utilise SHA-256 — une fonction mathématique qui transforme n\'importe quelle donnée en un code de 64 caractères. Même un changement de 1 lettre donne un résultat totalement différent.'},
+  {s:'∞',  t:'la rareté digitale',   tx:'Avant Bitcoin, on ne pouvait pas créer de rareté numérique. N\'importe quel fichier peut être copié — sauf un satoshi. C\'est la première fois dans l\'histoire qu\'un objet digital est vraiment unique.'},
 ];
+
+// ── No-repeat shuffle queue ──
+let _factQueue=[];
+function getNextFact(){
+  if(_factQueue.length===0){
+    _factQueue=FACTS.map((_,i)=>i);
+    for(let i=_factQueue.length-1;i>0;i--){const j=rand(0,i);[_factQueue[i],_factQueue[j]]=[_factQueue[j],_factQueue[i]];}
+  }
+  return FACTS[_factQueue.pop()];
+}
 
 // ══════════ SECRET TABLETS ══════════
 const SECRETS=[
@@ -557,8 +619,8 @@ function makeQ(){
   let a,b,ans;
   if(op==='+'){a=rand(1,l.max);b=rand(1,l.max);ans=a+b;}
   else if(op==='-'){a=rand(5,l.max+5);b=rand(1,a);ans=a-b;}
-  else if(op==='×'){a=rand(2,l.max);b=rand(2,Math.min(l.max,12));ans=a*b;}
-  else{b=rand(2,l.max);ans=rand(1,l.max);a=b*ans;}
+  else if(op==='×'){a=rand(2,Math.min(l.max,25));b=rand(2,Math.min(l.max,12));ans=a*b;}
+  else{const bmax=Math.min(l.max,12);b=rand(2,bmax);ans=rand(1,Math.min(l.max,50));a=b*ans;}
   return{eq:`${a} ${op} ${b} = ?`,ans,op};
 }
 function wrongOpts(c){
@@ -703,7 +765,9 @@ function answer(btn,chosen){
 function updateHUD(){
   document.getElementById('satDisp').textContent=G.sats;
   document.getElementById('lvlDisp').textContent=G.level+1;
-  document.getElementById('lvlNameDisp').textContent=getLvl().name;
+  const l=getLvl();
+  document.getElementById('lvlNameDisp').textContent=l.name;
+  document.getElementById('lvlGradeDisp').textContent=l.grade||'';
   const sb=document.getElementById('streakDisp');
   if(G.streak>1){sb.textContent=G.streak+'× 🔥';sb.classList.add('on');}
   else sb.classList.remove('on');
@@ -714,11 +778,27 @@ function showReward(btn,txt){
   const rc=btn.getBoundingClientRect();
   r.style.left=(rc.left+rc.width/2-20)+'px';r.style.top=(rc.top-10)+'px';
   document.body.appendChild(r);setTimeout(()=>r.remove(),1200);
+  // Particle burst
+  const cx=rc.left+rc.width/2, cy=rc.top+rc.height/2;
+  for(let i=0;i<14;i++){
+    const p=document.createElement('div');
+    const angle=(i/14)*Math.PI*2, spd=40+Math.random()*60;
+    const size=3+Math.random()*4;
+    p.style.cssText=`position:fixed;width:${size}px;height:${size}px;border-radius:50%;
+      background:${Math.random()>0.4?'#ffd86f':'#fff'};pointer-events:none;z-index:300;
+      left:${cx}px;top:${cy}px;`;
+    document.body.appendChild(p);
+    const tx=Math.cos(angle)*spd, ty=Math.sin(angle)*spd;
+    p.animate([
+      {transform:'translate(-50%,-50%) scale(1)',opacity:1},
+      {transform:`translate(calc(-50% + ${tx}px),calc(-50% + ${ty}px)) scale(0)`,opacity:0}
+    ],{duration:600+Math.random()*300,easing:'ease-out'}).onfinish=()=>p.remove();
+  }
 }
 
 // ══════════ FACT ══════════
 function showFact(){
-  const f=FACTS[rand(0,FACTS.length-1)];
+  const f=getNextFact();
   document.getElementById('fSym').textContent=f.s;
   document.getElementById('fTtl').textContent=f.t;
   document.getElementById('fTxt').textContent=f.tx;
@@ -733,6 +813,7 @@ function doLvlUp(){
   const l=getLvl();
   document.getElementById('luNum').textContent=G.level+1;
   document.getElementById('luName').textContent=l.name;
+  document.getElementById('luGrade').textContent=l.grade||'';
   document.getElementById('luDesc').textContent=l.desc;
   sndLvlUp();showOv('lvlupOverlay');
 }
@@ -802,7 +883,15 @@ function finishDaily(){
 }
 function closeDailyDone(){hideOv('dailyDoneOverlay');updateHUD();G.locked=false;nextQ();}
 
+// ══════════ RESET LEVEL ══════════
+function resetLevel(){
+  if(!confirm('Recommencer à Primaire 1 ? Tes satoshis sont conservés.'))return;
+  patchSave({level:0});
+  renderProfile();
+}
+
 // ══════════ INIT ══════════
+checkDayStreak();
 checkName();
 renderProfile();
 </script>
