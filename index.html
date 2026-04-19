@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3982413989310016" crossorigin="anonymous"></script>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
 <title>MathBitcoin — Le Langage de l'Univers</title>
@@ -164,11 +163,28 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ex
 .fact-sym{font-family:'Orbitron',sans-serif;font-size:52px;color:var(--gold);margin-bottom:10px;}
 .fact-ttl{font-family:'Orbitron',sans-serif;font-size:10px;letter-spacing:4px;
   color:rgba(255,216,111,0.45);text-transform:uppercase;margin-bottom:10px;}
-.fact-txt{font-size:13px;color:rgba(255,255,255,0.65);line-height:1.75;margin-bottom:22px;}
-.ov-btn{padding:10px 26px;border-radius:24px;border:1px solid rgba(255,216,111,0.35);
+.fact-txt{font-size:13px;color:rgba(255,255,255,0.65);line-height:1.75;margin-bottom:16px;}
+
+/* ── EN SAVOIR PLUS ── */
+.fact-expand{display:none;text-align:left;border-top:1px solid rgba(255,216,111,0.12);
+  margin-bottom:16px;padding-top:14px;animation:expandIn 0.3s ease;}
+@keyframes expandIn{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
+.exp-label{font-family:'Orbitron',sans-serif;font-size:9px;letter-spacing:3px;
+  color:rgba(255,216,111,0.4);text-transform:uppercase;margin:10px 0 4px;}
+.exp-label:first-child{margin-top:0;}
+.exp-txt{font-size:12px;color:rgba(255,255,255,0.5);line-height:1.75;margin:0;}
+.exp-loading{font-size:12px;color:rgba(255,216,111,0.25);text-align:center;
+  padding:10px 0;letter-spacing:4px;animation:pulse 1.4s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:0.2;}50%{opacity:1;}}
+
+.fact-btns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+.ov-btn{padding:10px 20px;border-radius:24px;border:1px solid rgba(255,216,111,0.35);
   background:rgba(255,216,111,0.07);font-family:'Exo 2',sans-serif;font-size:13px;
   color:rgba(255,255,255,0.8);cursor:pointer;transition:all 0.2s;letter-spacing:1px;}
 .ov-btn:hover{background:rgba(255,216,111,0.16);}
+.ov-btn.secondary{border-color:rgba(255,255,255,0.12);color:rgba(255,255,255,0.4);font-size:12px;}
+.ov-btn.secondary:hover{border-color:rgba(255,255,255,0.25);color:rgba(255,255,255,0.7);}
+.ov-btn:disabled{opacity:0.4;cursor:default;pointer-events:none;}
 
 /* Level up */
 .lvlup-card{text-align:center;padding:36px 28px;max-width:320px;width:90%;}
@@ -242,7 +258,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ex
       <div class="profile-avatar" id="profileAvatar">?</div>
       <div class="profile-info">
         <div class="profile-name" id="profileName">Explorateur</div>
-        <div class="profile-stats" id="profileStats">Niveau <span id="profileLvl">1</span> · <span id="profileQ">0</span> questions</div>
+        <div class="profile-stats">Niveau <span id="profileLvl">1</span> · <span id="profileQ">0</span> questions</div>
       </div>
       <div class="profile-sats" id="profileSats">0 ⚡</div>
     </div>
@@ -259,9 +275,6 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ex
       </div>
       <div class="menu-btn secret" id="secretBtn" onclick="showSecret()" style="display:none;">
         <span class="btn-icon">⬡</span>Tableau caché
-      </div>
-      <div class="menu-btn" onclick="resetLevel()" style="border-color:rgba(255,80,80,0.25);color:rgba(255,100,100,0.6);font-size:10px;">
-        <span class="btn-icon">↺</span>Recommencer au niveau 1
       </div>
     </div>
   </div>
@@ -281,7 +294,6 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ex
     <div class="hud-center">
       <div class="hud-lvl">Niveau <span id="lvlDisp">1</span></div>
       <div class="hud-lvlname" id="lvlNameDisp">Le Pico</div>
-      <div style="font-family:'Exo 2',sans-serif;font-size:9px;letter-spacing:2px;color:rgba(255,216,111,0.28);text-transform:uppercase;" id="lvlGradeDisp">Primaire 1</div>
     </div>
     <div class="hud-streak" id="streakDisp"></div>
   </div>
@@ -301,10 +313,6 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ex
   <div class="ans-wrap"><div class="answers" id="ansGrid"></div></div>
   <div class="prog-wrap"><div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div></div>
   <div class="ad-zone">
-    <!-- REMPLACE PAR TON TAG ADSENSE :
-    <ins class="adsbygoogle" style="display:inline-block;width:320px;height:50px"
-      data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX"></ins>
-    -->
     <div class="ad-slot">espace adsense</div>
   </div>
 </div>
@@ -317,21 +325,27 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ex
     <div class="ov-btn" onclick="saveName()">commencer l'exploration →</div>
   </div>
 </div>
+
+<!-- FACT OVERLAY — avec "en savoir plus" -->
 <div class="overlay" id="factOverlay">
   <div class="fact-card">
     <div class="fact-sym" id="fSym">∞</div>
     <div class="fact-ttl" id="fTtl">saviez-vous?</div>
     <div class="fact-txt" id="fTxt"></div>
-    <div class="ov-btn" onclick="closeFact()">continuer l'exploration →</div>
+    <div class="fact-expand" id="factExpand"></div>
+    <div class="fact-btns">
+      <div class="ov-btn secondary" id="factMoreBtn" onclick="loadMoreFact()">✦ en savoir plus</div>
+      <div class="ov-btn" onclick="closeFact()">continuer →</div>
+    </div>
   </div>
 </div>
+
 <div class="overlay" id="lvlupOverlay">
   <div class="lvlup-card">
     <div class="lvlup-ring"><div class="lvlup-num" id="luNum">2</div></div>
     <div class="lvlup-label">nouveau niveau</div>
-    <div class="lvlup-name" id="luName">Le Nano</div>
-    <div style="font-family:'Orbitron',sans-serif;font-size:9px;letter-spacing:3px;color:rgba(255,216,111,0.35);text-transform:uppercase;margin-bottom:8px;" id="luGrade">Primaire 2</div>
-    <div class="lvlup-desc" id="luDesc">L\'univers s\'expand. Tu vois plus loin.</div>
+    <div class="lvlup-name" id="luName">La Spirale</div>
+    <div class="lvlup-desc" id="luDesc">L'univers s'expand. Tu vois plus loin.</div>
     <div class="ov-btn" onclick="closeLvlUp()">continuer →</div>
   </div>
 </div>
@@ -380,9 +394,7 @@ let AC;
 function getAC(){if(!AC)AC=new(window.AudioContext||window.webkitAudioContext)();return AC;}
 function playTone(freq,dur,type='sine',vol=0.15,delay=0){
   try{
-    const ac=getAC();
-    const o=ac.createOscillator();
-    const g=ac.createGain();
+    const ac=getAC();const o=ac.createOscillator();const g=ac.createGain();
     o.connect(g);g.connect(ac.destination);
     o.type=type;o.frequency.setValueAtTime(freq,ac.currentTime+delay);
     g.gain.setValueAtTime(vol,ac.currentTime+delay);
@@ -390,65 +402,25 @@ function playTone(freq,dur,type='sine',vol=0.15,delay=0){
     o.start(ac.currentTime+delay);o.stop(ac.currentTime+delay+dur);
   }catch(e){}
 }
-function sndCorrect(){
-  const s=Math.min(G.streak,8);
-  const base=523+s*40;
-  playTone(base,0.12,'sine',0.12);
-  playTone(base*1.26,0.12,'sine',0.10,0.1);
-  playTone(base*1.5,0.18,'sine',0.10,0.2);
-}
-function sndWrong(){
-  playTone(220,0.08,'sawtooth',0.08);
-  playTone(180,0.15,'sawtooth',0.07,0.09);
-}
-function sndLvlUp(){
-  [523,659,784,1047].forEach((f,i)=>playTone(f,0.22,'sine',0.12,i*0.12));
-}
+function sndCorrect(){playTone(523,0.12,'sine',0.12);playTone(659,0.12,'sine',0.10,0.1);playTone(784,0.18,'sine',0.10,0.2);}
+function sndWrong(){playTone(220,0.08,'sawtooth',0.08);playTone(180,0.15,'sawtooth',0.07,0.09);}
+function sndLvlUp(){[523,659,784,1047].forEach((f,i)=>playTone(f,0.22,'sine',0.12,i*0.12));}
 function sndTick(){playTone(880,0.05,'sine',0.05);}
-function sndSecret(){
-  playTone(440,0.3,'sine',0.08);
-  playTone(554,0.3,'sine',0.07,0.15);
-  playTone(659,0.5,'sine',0.09,0.3);
-}
-function sndDaily(){
-  [392,523,659,784].forEach((f,i)=>playTone(f,0.25,'triangle',0.1,i*0.1));
-}
+function sndSecret(){playTone(440,0.3,'sine',0.08);playTone(554,0.3,'sine',0.07,0.15);playTone(659,0.5,'sine',0.09,0.3);}
+function sndDaily(){[392,523,659,784].forEach((f,i)=>playTone(f,0.25,'triangle',0.1,i*0.1));}
 
 // ══════════ SAVE / LOAD ══════════
 const SAVE_KEY='mbv3';
-function loadSave(){
-  try{return JSON.parse(localStorage.getItem(SAVE_KEY))||{};}catch(e){return{};}
-}
-function writeSave(d){
-  try{localStorage.setItem(SAVE_KEY,JSON.stringify(d));}catch(e){}
-}
+function loadSave(){try{return JSON.parse(localStorage.getItem(SAVE_KEY))||{};}catch(e){return{};}}
+function writeSave(d){try{localStorage.setItem(SAVE_KEY,JSON.stringify(d));}catch(e){}}
 function getSave(){
   let d=loadSave();
-  if(!d.name)d.name='';
-  if(!d.sats)d.sats=0;
-  if(!d.level)d.level=0;
-  if(!d.totalQ)d.totalQ=0;
-  if(!d.secretsFound)d.secretsFound=[];
-  if(!d.dailyDate)d.dailyDate='';
-  if(!d.dailyDone)d.dailyDone=false;
-  if(!d.dayStreak)d.dayStreak=0;
-  if(!d.lastLoginDate)d.lastLoginDate='';
+  if(!d.name)d.name='';if(!d.sats)d.sats=0;if(!d.level)d.level=0;
+  if(!d.totalQ)d.totalQ=0;if(!d.secretsFound)d.secretsFound=[];
+  if(!d.dailyDate)d.dailyDate='';if(!d.dailyDone)d.dailyDone=false;
   return d;
 }
-
-function checkDayStreak(){
-  const d=getSave();
-  const today=new Date().toDateString();
-  const yesterday=new Date(Date.now()-86400000).toDateString();
-  if(d.lastLoginDate===today)return;
-  let streak=d.dayStreak||0;
-  if(d.lastLoginDate===yesterday)streak++;
-  else if(d.lastLoginDate!==today)streak=1;
-  patchSave({dayStreak:streak,lastLoginDate:today});
-}
-function patchSave(obj){
-  const d=getSave();Object.assign(d,obj);writeSave(d);return d;
-}
+function patchSave(obj){const d=getSave();Object.assign(d,obj);writeSave(d);return d;}
 
 // ══════════ PROFILE ══════════
 function renderProfile(){
@@ -458,135 +430,69 @@ function renderProfile(){
   document.getElementById('profileSats').textContent=d.sats+'⚡';
   document.getElementById('profileLvl').textContent=d.level+1;
   document.getElementById('profileQ').textContent=d.totalQ;
-  const ds=d.dayStreak||0;
-  document.getElementById('profileStats').innerHTML=
-    `Niveau <span id="profileLvl">${d.level+1}</span> · <span id="profileQ">${d.totalQ}</span> questions`+
-    (ds>1?` · <span style="color:#ffd86f;">🔥 ${ds} jours</span>`:'');
-  // Daily badge
   const today=new Date().toDateString();
   const done=d.dailyDate===today&&d.dailyDone;
   const badge=document.getElementById('dailyBadge');
   badge.textContent=done?'FAIT':'NOUVEAU';
   badge.className='daily-badge'+(done?' daily-done':'');
-  // Secret button
   const sb=document.getElementById('secretBtn');
   if(d.totalQ>=20||d.secretsFound.length>0)sb.style.display='flex';
 }
 
 // ══════════ SCREEN SWITCH ══════════
-function show(id,delay=0){
-  setTimeout(()=>{
-    document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-  },delay);
-}
+function show(id,delay=0){setTimeout(()=>{document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');},delay);}
 function showOv(id){document.getElementById(id).classList.add('show');}
 function hideOv(id){document.getElementById(id).classList.remove('show');}
 
 // ══════════ NAME INPUT ══════════
-function checkName(){
-  const d=getSave();
-  if(!d.name){showOv('nameOverlay');}
-  else renderProfile();
-}
-function saveName(){
-  const n=document.getElementById('nameInput').value.trim();
-  if(!n)return;
-  patchSave({name:n});
-  hideOv('nameOverlay');
-  renderProfile();
-}
+function checkName(){const d=getSave();if(!d.name){showOv('nameOverlay');}else renderProfile();}
+function saveName(){const n=document.getElementById('nameInput').value.trim();if(!n)return;patchSave({name:n});hideOv('nameOverlay');renderProfile();}
 document.getElementById('nameInput').addEventListener('keydown',e=>{if(e.key==='Enter')saveName();});
 
 // ══════════ PORTAL / WORMHOLE ══════════
-function enterPortal(){
-  startWormhole(()=>{startGame('normal');});
-}
+function enterPortal(){startWormhole(()=>{startGame('normal');});}
 function startWormhole(cb){
   show('s-worm');
   const c=document.getElementById('wormC');c.innerHTML='';
-  // Vortex
-  for(let i=0;i<10;i++){
-    const r=document.createElement('div');
-    const sz=14+i*15;
-    r.style.cssText=`position:absolute;width:${sz}px;height:${sz}px;border-radius:50%;
-      border:1px solid rgba(255,216,111,0);transform:scale(0);
-      animation:vox 1.8s ease forwards;animation-delay:${i*0.06}s;`;
-    c.appendChild(r);
-  }
-  // Streaks
-  for(let i=0;i<36;i++){
-    const s=document.createElement('div');
-    const a=(i/36)*360,d=Math.random()*0.5,th=Math.random()<0.25?2:1;
-    s.style.cssText=`position:absolute;top:50%;left:50%;width:${th}px;height:0;
-      transform:translate(-50%,0) rotate(${a}deg);transform-origin:50% 0;
-      background:linear-gradient(to bottom,rgba(255,216,111,0),rgba(255,216,111,0.9),#fff);
-      opacity:0;animation:stk 1.4s ease-out forwards;animation-delay:${d}s;`;
-    c.appendChild(s);
-  }
-  const st=document.createElement('style');
-  st.textContent=`
-    @keyframes vox{0%{transform:scale(0);border-color:rgba(255,216,111,0.8);opacity:1;}100%{transform:scale(9);border-color:rgba(255,216,111,0);opacity:0;}}
-    @keyframes stk{0%{opacity:0;height:0;}15%{opacity:1;}100%{opacity:0;height:62vmax;}}
-  `;
-  document.head.appendChild(st);
+  for(let i=0;i<10;i++){const r=document.createElement('div');const sz=14+i*15;r.style.cssText=`position:absolute;width:${sz}px;height:${sz}px;border-radius:50%;border:1px solid rgba(255,216,111,0);transform:scale(0);animation:vox 1.8s ease forwards;animation-delay:${i*0.06}s;`;c.appendChild(r);}
+  for(let i=0;i<36;i++){const s=document.createElement('div');const a=(i/36)*360,d=Math.random()*0.5,th=Math.random()<0.25?2:1;s.style.cssText=`position:absolute;top:50%;left:50%;width:${th}px;height:0;transform:translate(-50%,0) rotate(${a}deg);transform-origin:50% 0;background:linear-gradient(to bottom,rgba(255,216,111,0),rgba(255,216,111,0.9),#fff);opacity:0;animation:stk 1.4s ease-out forwards;animation-delay:${d}s;`;c.appendChild(s);}
+  const st=document.createElement('style');st.textContent=`@keyframes vox{0%{transform:scale(0);border-color:rgba(255,216,111,0.8);opacity:1;}100%{transform:scale(9);border-color:rgba(255,216,111,0);opacity:0;}}@keyframes stk{0%{opacity:0;height:0;}15%{opacity:1;}100%{opacity:0;height:62vmax;}}`;document.head.appendChild(st);
   setTimeout(()=>{document.getElementById('wormFlash').style.opacity='1';},1500);
   setTimeout(()=>{if(cb)cb();},1900);
 }
 
-// ══════════ LEVELS — Curriculum Québec P1→S5 ══════════
+// ══════════ LEVELS ══════════
 const LEVELS=[
-  // ── PRIMAIRE ──
-  {name:'Le Pico',   grade:'Primaire 1', desc:'L\'univers naît d\'un point. Tu additionnes les premières étoiles.',          ops:['+'],              max:10,  qpl:8 },
-  {name:'Le Nano',   grade:'Primaire 2', desc:'L\'espace se dilate. Addition et soustraction jusqu\'à 20.',                  ops:['+','-'],          max:20,  qpl:8 },
-  {name:'Le Micro',  grade:'Primaire 3', desc:'Les tables de multiplication cachent l\'ordre de l\'univers.',                ops:['+','-','×'],      max:12,  qpl:10},
-  {name:'Le Kilo',   grade:'Primaire 4', desc:'Division et fractions — la géométrie des constellations.',                   ops:['+','-','×','÷'],  max:12,  qpl:10},
-  {name:'Le Méga',   grade:'Primaire 5', desc:'Les décimaux et les grands nombres fractionnent la lumière.',                 ops:['+','-','×','÷'],  max:20,  qpl:10},
-  {name:'Le Giga',   grade:'Primaire 6', desc:'Pourcentages, ratios — tu mesures l\'espace entre les étoiles.',             ops:['+','-','×','÷'],  max:50,  qpl:12},
-  // ── SECONDAIRE ──
-  {name:'Le Téra',   grade:'Secondaire 1',desc:'L\'algèbre révèle l\'invisible. Les entiers négatifs existent.',            ops:['+','-','×','÷'],  max:100, qpl:12},
-  {name:'Le Péta',   grade:'Secondaire 2',desc:'Les équations modélisent la trajectoire des planètes.',                     ops:['+','-','×','÷'],  max:144, qpl:12},
-  {name:'L\'Exa',    grade:'Secondaire 3',desc:'Statistiques et probabilités — la physique des étoiles s\'ouvre.',          ops:['+','-','×','÷'],  max:200, qpl:15},
-  {name:'Le Zetta',  grade:'Secondaire 4',desc:'Les fonctions quadratiques tracent les orbites célestes.',                  ops:['+','-','×','÷'],  max:300, qpl:15},
-  {name:'Le Yotta',  grade:'Secondaire 5',desc:'Tu lis le code source de l\'univers. Tu es Bitcoin.',                       ops:['+','-','×','÷'],  max:500, qpl:15},
+  {name:'Le Pico',    desc:'L\'univers naît d\'un point.',    ops:['+'],            max:10, qpl:8 },
+  {name:'Le Cercle',  desc:'La première forme parfaite.',     ops:['+','-'],        max:15, qpl:8 },
+  {name:'La Spirale', desc:'Phi structure toute croissance.', ops:['+','-'],        max:20, qpl:10},
+  {name:'Le Triangle',desc:'La stabilité vient de 3 points.',ops:['+','-','×'],     max:12, qpl:10},
+  {name:'La Symétrie',desc:'L\'univers aime l\'équilibre.',   ops:['+','-','×'],    max:15, qpl:10},
+  {name:'Le Portail', desc:'Tu traverses vers plus loin.',    ops:['+','-','×','÷'],max:12, qpl:12},
+  {name:'La Constellation',desc:'Les étoiles obéissent aux maths.',ops:['+','-','×','÷'],max:20,qpl:12},
+  {name:'L\'Univers', desc:'Tu lis le langage du cosmos.',    ops:['+','-','×','÷'],max:25, qpl:15},
 ];
 const DOMAINS={'+':'addition','-':'soustraction','×':'multiplication','÷':'division'};
 
-// ══════════ MATH & BITCOIN FACTS ══════════
+// ══════════ MATH FACTS ══════════
 const FACTS=[
-  // Mathématiques
-  {s:'π',  t:'le nombre π',          tx:'Pi est partout : dans les cercles, les ondes, la lumière. Il est identique partout dans l\'univers, des atomes aux galaxies.'},
-  {s:'φ',  t:'le nombre d\'or',      tx:'Phi (1.618...) gouverne la spirale des coquillages, la disposition des graines de tournesol, et la structure des galaxies.'},
-  {s:'0',  t:'le zéro',              tx:'Le zéro n\'existait pas dans l\'arithmétique antique. Les Mayas l\'ont inventé vers 350 apr. J.-C. — une révolution qui a rendu l\'algèbre possible.'},
-  {s:'∞',  t:'l\'infini',            tx:'Certains infinis sont plus grands que d\'autres. L\'infini des nombres réels est strictement plus grand que l\'infini des entiers naturels.'},
-  {s:'√2', t:'la racine de 2',       tx:'Les Babyloniens connaissaient √2 il y a 3700 ans, gravé sur une tablette d\'argile. C\'est la diagonale d\'un carré de côté 1.'},
-  {s:'∑',  t:'les sommes de Gauss',  tx:'Gauss a calculé 1+2+...+100 = 5050 à 7 ans en quelques secondes. Il avait vu que chaque paire (1+100, 2+99...) valait toujours 101.'},
-  {s:'e',  t:'le nombre e',          tx:'e = 2.718... est la base de la croissance naturelle. Les populations, les intérêts composés et la radioactivité suivent tous ce nombre.'},
-  {s:'i',  t:'le nombre imaginaire', tx:'i = √(-1) n\'existe pas sur la droite des réels — mais il permet de décrire les ondes électromagnétiques et les circuits électroniques.'},
-  {s:'p',  t:'les nombres premiers', tx:'Les nombres premiers (2, 3, 5, 7, 11...) sont les atomes des mathématiques. Chaque entier peut être décomposé en produit de nombres premiers — de façon unique.'},
-  {s:'%',  t:'les pourcentages',     tx:'100% vient du latin «per centum» : «pour cent». Les Romains calculaient déjà des taxes de 1/100. Aujourd\'hui, les pourcentages gouvernent finance, science et économie.'},
-  {s:'∅',  t:'l\'ensemble vide',     tx:'L\'ensemble vide {} ne contient rien — et pourtant il est contenu dans tous les ensembles. Un rien mathématique qui structure toute la logique.'},
-  {s:'Δ',  t:'la différence',        tx:'Le symbole Δ (delta) signifie «différence» ou «variation». En physique, Δv est la variation de vitesse. En finance, c\'est le changement de prix.'},
-  {s:'1',  t:'le un',                tx:'1 n\'est ni premier ni composé — il est l\'unité, la base de tout. Sans le 1, aucun autre nombre n\'existerait. C\'est la graine de l\'univers arithmétique.'},
-  {s:'12', t:'la douzaine',          tx:'Les Babyloniens comptaient en base 12 parce que 12 est divisible par 1, 2, 3, 4, 6 et 12. C\'est pour ça qu\'on a 12 mois, 12 heures, 60 minutes.'},
-  // Bitcoin & Satoshi
-  {s:'₿',  t:'Bitcoin',              tx:'Bitcoin a été créé en 2008 par Satoshi Nakamoto. Il n\'y aura jamais plus de 21 millions de BTC — cette limite est inscrite dans le code pour toujours.'},
-  {s:'⚡', t:'le satoshi',           tx:'1 Bitcoin = 100 000 000 satoshis. Le satoshi est la plus petite unité de Bitcoin. Si 1 BTC vaut 100 000$, 1 satoshi vaut 0.1 centime.'},
-  {s:'⛏',  t:'le minage',           tx:'Les mineurs de Bitcoin résolvent des équations mathématiques pour valider les transactions. En échange, ils reçoivent des satoshis — comme une récompense cosmique.'},
-  {s:'#',  t:'la blockchain',        tx:'La blockchain Bitcoin est une chaîne de blocs mathématiquement liés. Changer un seul bloc invaliderait toute la chaîne — une structure aussi solide que les lois de la physique.'},
-  {s:'½',  t:'le halving',           tx:'Tous les 210 000 blocs (~4 ans), la récompense des mineurs est divisée par 2. Ce «halving» rend Bitcoin plus rare avec le temps — une déflation mathématiquement programmée.'},
-  {s:'🔑', t:'la cryptographie',     tx:'Bitcoin utilise la cryptographie à courbe elliptique. Trouver ta clé privée en cassant l\'algorithme prendrait plus de temps que l\'âge de l\'univers — même avec un superordinateur.'},
-  {s:'21', t:'21 millions',          tx:'21 millions de bitcoins maximum. Pas un de plus. Cette limite mathématique est la raison pour laquelle Bitcoin est rare — comme l\'or, mais vérifiable par n\'importe qui.'},
-  {s:'∑',  t:'les nodes',            tx:'Le réseau Bitcoin compte des milliers de nœuds (nodes) qui vérifient chaque transaction indépendamment. Pas de banque centrale — les mathématiques font foi.'},
-  {s:'🌍', t:'la décentralisation',  tx:'Bitcoin fonctionne sans serveur central. Chaque transaction est validée par des milliers d\'ordinateurs dans le monde. Aucun gouvernement ne peut l\'éteindre.'},
-  {s:'⏱',  t:'les 10 minutes',      tx:'Un nouveau bloc Bitcoin est créé toutes les ~10 minutes en moyenne. Si les mineurs accélèrent, la difficulté augmente automatiquement pour maintenir ce rythme.'},
-  {s:'🧮', t:'la preuve de travail', tx:'Pour ajouter un bloc à la blockchain, un mineur doit trouver un nombre qui satisfait une équation mathématique très difficile. Ce «Proof of Work» coûte de l\'énergie réelle.'},
-  {s:'💡', t:'les satoshis Lightning',tx:'Le Lightning Network permet d\'envoyer des satoshis en moins d\'une seconde, avec des frais quasi nuls. Des mathématiques de canaux de paiement rendent ça possible.'},
-  {s:'🔢', t:'le SHA-256',           tx:'Bitcoin utilise SHA-256 — une fonction mathématique qui transforme n\'importe quelle donnée en un code de 64 caractères. Même un changement de 1 lettre donne un résultat totalement différent.'},
-  {s:'∞',  t:'la rareté digitale',   tx:'Avant Bitcoin, on ne pouvait pas créer de rareté numérique. N\'importe quel fichier peut être copié — sauf un satoshi. C\'est la première fois dans l\'histoire qu\'un objet digital est vraiment unique.'},
+  {s:'π', t:'le nombre π',          tx:'Pi est partout : dans les cercles, les ondes, la lumière. Il est le même partout dans l\'univers, des atomes aux galaxies.'},
+  {s:'φ', t:'le nombre d\'or',      tx:'Phi (1.618...) gouverne la spirale des coquillages, la disposition des graines de tournesol, et la croissance des galaxies.'},
+  {s:'0', t:'le zéro',              tx:'Le zéro n\'existait pas dans l\'arithmétique antique. Les Mayas l\'ont inventé vers 350 apr. J.-C. — une révolution qui a rendu l\'algèbre possible.'},
+  {s:'∞', t:'l\'infini',            tx:'Certains infinis sont plus grands que d\'autres. L\'infini des nombres réels est strictement plus grand que l\'infini des entiers.'},
+  {s:'√2',t:'la racine de 2',       tx:'Les Babyloniens connaissaient √2 il y a 3700 ans, gravé sur une tablette d\'argile. C\'est la diagonale d\'un carré de côté 1.'},
+  {s:'∑', t:'les sommes de Gauss',  tx:'Gauss a calculé 1+2+...+100 = 5050 à 7 ans en quelques secondes. Il avait vu que chaque paire (1+100, 2+99...) valait toujours 101.'},
+  {s:'e', t:'le nombre e',          tx:'e = 2.718... est la base de la croissance naturelle. Les populations, les intérêts composés et la radioactivité suivent tous ce nombre.'},
+  {s:'i', t:'le nombre imaginaire', tx:'i = √(-1) n\'existe pas sur la droite des réels — mais il permet de décrire les ondes électromagnétiques et les circuits électroniques.'},
+  {s:'p', t:'les nombres premiers', tx:'Les nombres premiers (2, 3, 5, 7, 11...) sont les atomes des mathématiques. Chaque entier peut être décomposé en produit de nombres premiers — de façon unique.'},
+  {s:'₿', t:'Bitcoin',              tx:'Bitcoin a été créé en 2008 par Satoshi Nakamoto. Il n\'y aura jamais plus de 21 millions de BTC — cette limite est inscrite dans le code pour toujours.'},
+  {s:'⚡',t:'le satoshi',           tx:'1 Bitcoin = 100 000 000 satoshis. Le satoshi est la plus petite unité de Bitcoin. Si 1 BTC vaut 100 000$, 1 satoshi vaut 0.1 centime.'},
+  {s:'½', t:'le halving',           tx:'Tous les 210 000 blocs (~4 ans), la récompense des mineurs est divisée par 2. Ce «halving» rend Bitcoin plus rare avec le temps.'},
+  {s:'🔑',t:'la cryptographie',     tx:'Bitcoin utilise la cryptographie à courbe elliptique. Trouver ta clé privée en cassant l\'algorithme prendrait plus de temps que l\'âge de l\'univers.'},
+  {s:'21',t:'21 millions',          tx:'21 millions de bitcoins maximum. Pas un de plus. Cette limite mathématique est la raison pour laquelle Bitcoin est rare — comme l\'or, mais vérifiable par tous.'},
 ];
 
-// ── No-repeat shuffle queue ──
+// No-repeat shuffle queue
 let _factQueue=[];
 function getNextFact(){
   if(_factQueue.length===0){
@@ -610,24 +516,17 @@ let G={sats:0,streak:0,level:0,qCount:0,currentAns:0,locked:false,
        dailyQ:0,dailyCorrect:0,isDailyActive:false,factEvery:5};
 
 function getLvl(){return LEVELS[Math.min(G.level,LEVELS.length-1)];}
-
 function rand(a,b){return Math.floor(Math.random()*(b-a+1))+a;}
 
 function makeQ(){
-  const l=getLvl();
-  const op=l.ops[rand(0,l.ops.length-1)];
-  let a,b,ans;
+  const l=getLvl();const op=l.ops[rand(0,l.ops.length-1)];let a,b,ans;
   if(op==='+'){a=rand(1,l.max);b=rand(1,l.max);ans=a+b;}
   else if(op==='-'){a=rand(5,l.max+5);b=rand(1,a);ans=a-b;}
-  else if(op==='×'){a=rand(2,Math.min(l.max,25));b=rand(2,Math.min(l.max,12));ans=a*b;}
-  else{const bmax=Math.min(l.max,12);b=rand(2,bmax);ans=rand(1,Math.min(l.max,50));a=b*ans;}
+  else if(op==='×'){a=rand(2,l.max);b=rand(2,Math.min(l.max,12));ans=a*b;}
+  else{b=rand(2,l.max);ans=rand(1,l.max);a=b*ans;}
   return{eq:`${a} ${op} ${b} = ?`,ans,op};
 }
-function wrongOpts(c){
-  const s=new Set();
-  while(s.size<3){const r=Math.max(6,Math.floor(Math.abs(c)*0.35));let w=c+rand(-r,r);if(w!==c&&w>=0&&!s.has(w))s.add(w);}
-  return[...s];
-}
+function wrongOpts(c){const s=new Set();while(s.size<3){const r=Math.max(6,Math.floor(Math.abs(c)*0.35));let w=c+rand(-r,r);if(w!==c&&w>=0&&!s.has(w))s.add(w);}return[...s];}
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=rand(0,i);[a[i],a[j]]=[a[j],a[i]];}return a;}
 
 // ══════════ START GAME ══════════
@@ -636,128 +535,74 @@ function startGame(mode){
   G={sats:d.sats,streak:0,level:d.level,qCount:0,currentAns:0,locked:false,
      mode,timerSec:30,timerMax:30,timerInt:null,
      dailyQ:0,dailyCorrect:0,isDailyActive:false,factEvery:5};
-
-  const tn=document.getElementById('timerNum');
-  const tf=document.getElementById('timerFill');
-  if(mode==='speed'){
-    tn.style.display='block';
-    tf.style.background='var(--gold)';
-  } else {
-    tn.style.display='none';
-    tf.style.width='100%';
-    tf.style.background='var(--violet)';
-  }
-
+  const tn=document.getElementById('timerNum');const tf=document.getElementById('timerFill');
+  if(mode==='speed'){tn.style.display='block';tf.style.background='var(--gold)';}
+  else{tn.style.display='none';tf.style.width='100%';tf.style.background='var(--violet)';}
   startWormhole(()=>{show('s-game');updateHUD();nextQ();});
 }
 
 // ══════════ TIMER ══════════
 function startTimer(){
-  clearInterval(G.timerInt);
-  G.timerSec=G.timerMax;
-  const tf=document.getElementById('timerFill');
-  const tn=document.getElementById('timerNum');
-  tf.style.transition='none';tf.style.width='100%';
-  tf.style.background='var(--gold)';
-
+  clearInterval(G.timerInt);G.timerSec=G.timerMax;
+  const tf=document.getElementById('timerFill');const tn=document.getElementById('timerNum');
+  tf.style.transition='none';tf.style.width='100%';tf.style.background='var(--gold)';
   G.timerInt=setInterval(()=>{
-    G.timerSec-=0.1;
-    if(G.timerSec<=0){clearInterval(G.timerInt);timeUp();return;}
+    G.timerSec-=0.1;if(G.timerSec<=0){clearInterval(G.timerInt);timeUp();return;}
     const pct=(G.timerSec/G.timerMax)*100;
-    tf.style.transition='width 0.1s linear';
-    tf.style.width=pct+'%';
-    if(G.timerSec<10){
-      tf.style.background='var(--red)';
-      tn.classList.add('warn');
-      if(Math.round(G.timerSec*10)%10===0)sndTick();
-    }
+    tf.style.transition='width 0.1s linear';tf.style.width=pct+'%';
+    if(G.timerSec<10){tf.style.background='var(--red)';tn.classList.add('warn');if(Math.round(G.timerSec*10)%10===0)sndTick();}
     tn.textContent=Math.ceil(G.timerSec);
   },100);
 }
 function timeUp(){
-  G.locked=true;
-  document.querySelectorAll('.ans').forEach(b=>{b.style.pointerEvents='none';});
-  document.getElementById('uR1').classList.add('no');
-  sndWrong();
-  G.streak=0;updateHUD();
+  G.locked=true;document.querySelectorAll('.ans').forEach(b=>{b.style.pointerEvents='none';});
+  document.getElementById('uR1').classList.add('no');sndWrong();G.streak=0;updateHUD();
   setTimeout(()=>{G.locked=false;nextQ();},900);
 }
 
 // ══════════ NEXT QUESTION ══════════
 function nextQ(){
-  if(G.locked)return;
-  const l=getLvl();
-  const q=makeQ();
-  G.currentAns=q.ans;G.locked=false;
-
+  if(G.locked)return;const l=getLvl();const q=makeQ();G.currentAns=q.ans;G.locked=false;
   document.getElementById('pDomain').textContent=DOMAINS[q.op]||'calcul';
-  const eq=document.getElementById('pEq');
-  eq.classList.add('fade');
+  const eq=document.getElementById('pEq');eq.classList.add('fade');
   setTimeout(()=>{eq.textContent=q.eq;eq.classList.remove('fade');},180);
-
   const grid=document.getElementById('ansGrid');grid.innerHTML='';
   shuffle([q.ans,...wrongOpts(q.ans)]).forEach(o=>{
-    const b=document.createElement('button');
-    b.className='ans';b.textContent=o;b.onclick=()=>answer(b,o);
-    grid.appendChild(b);
+    const b=document.createElement('button');b.className='ans';b.textContent=o;b.onclick=()=>answer(b,o);grid.appendChild(b);
   });
-  const pct=((G.qCount%l.qpl)/l.qpl)*100;
-  document.getElementById('progFill').style.width=pct+'%';
-
+  document.getElementById('progFill').style.width=((G.qCount%l.qpl)/l.qpl*100)+'%';
   if(G.mode==='speed')startTimer();
 }
 
 // ══════════ ANSWER ══════════
 function answer(btn,chosen){
-  if(G.locked)return;
-  G.locked=true;
-  clearInterval(G.timerInt);
-  document.querySelectorAll('.ans').forEach(b=>b.style.pointerEvents='none');
-  G.qCount++;
-
-  // Daily tracking
+  if(G.locked)return;G.locked=true;clearInterval(G.timerInt);
+  document.querySelectorAll('.ans').forEach(b=>b.style.pointerEvents='none');G.qCount++;
   if(G.isDailyActive){G.dailyQ++;if(chosen===G.currentAns)G.dailyCorrect++;}
 
   if(chosen===G.currentAns){
-    btn.classList.add('ok');
-    document.getElementById('uR1').classList.add('ok');
+    btn.classList.add('ok');document.getElementById('uR1').classList.add('ok');
     setTimeout(()=>document.getElementById('uR1').classList.remove('ok'),800);
-    sndCorrect();
-    G.streak++;
-    const bonus=Math.floor(1+G.streak*0.6+G.level*0.4);
-    G.sats+=bonus;
+    sndCorrect();G.streak++;
+    const bonus=Math.floor(1+G.streak*0.6+G.level*0.4);G.sats+=bonus;
     showReward(btn,'+'+bonus+' ⚡');
     patchSave({sats:G.sats,level:G.level,totalQ:getSave().totalQ+1});
-    updateHUD();
-    renderProfile();
-
-    // Check secret unlock
+    updateHUD();renderProfile();
     const d=getSave();
     if(d.totalQ>0&&d.totalQ%25===0){
       const idx=Math.floor(Math.random()*SECRETS.length);
-      if(!d.secretsFound.includes(idx)){
-        patchSave({secretsFound:[...d.secretsFound,idx]});
-        setTimeout(()=>triggerSecret(idx),600);return;
-      }
+      if(!d.secretsFound.includes(idx)){patchSave({secretsFound:[...d.secretsFound,idx]});setTimeout(()=>triggerSecret(idx),600);return;}
     }
-    // Daily done
     if(G.isDailyActive&&G.dailyQ>=10){setTimeout(()=>finishDaily(),600);return;}
-    // Level up
-    if(G.qCount>0&&G.qCount%getLvl().qpl===0&&G.level<LEVELS.length-1){
-      setTimeout(()=>doLvlUp(),600);return;
-    }
-    // Math fact
+    if(G.qCount>0&&G.qCount%getLvl().qpl===0&&G.level<LEVELS.length-1){setTimeout(()=>doLvlUp(),600);return;}
     if(G.qCount%G.factEvery===0){setTimeout(()=>showFact(),600);return;}
     setTimeout(()=>{G.locked=false;nextQ();},700);
-
   } else {
-    btn.classList.add('no');
-    document.getElementById('uR1').classList.add('no');
+    btn.classList.add('no');document.getElementById('uR1').classList.add('no');
     setTimeout(()=>document.getElementById('uR1').classList.remove('no'),600);
     sndWrong();
     document.querySelectorAll('.ans').forEach(b=>{if(parseInt(b.textContent)===G.currentAns)b.classList.add('reveal');});
-    G.streak=0;updateHUD();
-    patchSave({totalQ:getSave().totalQ+1});
+    G.streak=0;updateHUD();patchSave({totalQ:getSave().totalQ+1});
     setTimeout(()=>{G.locked=false;nextQ();},1100);
   }
 }
@@ -765,12 +610,9 @@ function answer(btn,chosen){
 function updateHUD(){
   document.getElementById('satDisp').textContent=G.sats;
   document.getElementById('lvlDisp').textContent=G.level+1;
-  const l=getLvl();
-  document.getElementById('lvlNameDisp').textContent=l.name;
-  document.getElementById('lvlGradeDisp').textContent=l.grade||'';
+  document.getElementById('lvlNameDisp').textContent=getLvl().name;
   const sb=document.getElementById('streakDisp');
-  if(G.streak>1){sb.textContent=G.streak+'× 🔥';sb.classList.add('on');}
-  else sb.classList.remove('on');
+  if(G.streak>1){sb.textContent=G.streak+'× 🔥';sb.classList.add('on');}else sb.classList.remove('on');
 }
 
 function showReward(btn,txt){
@@ -778,42 +620,85 @@ function showReward(btn,txt){
   const rc=btn.getBoundingClientRect();
   r.style.left=(rc.left+rc.width/2-20)+'px';r.style.top=(rc.top-10)+'px';
   document.body.appendChild(r);setTimeout(()=>r.remove(),1200);
-  // Particle burst
-  const cx=rc.left+rc.width/2, cy=rc.top+rc.height/2;
-  for(let i=0;i<14;i++){
-    const p=document.createElement('div');
-    const angle=(i/14)*Math.PI*2, spd=40+Math.random()*60;
-    const size=3+Math.random()*4;
-    p.style.cssText=`position:fixed;width:${size}px;height:${size}px;border-radius:50%;
-      background:${Math.random()>0.4?'#ffd86f':'#fff'};pointer-events:none;z-index:300;
-      left:${cx}px;top:${cy}px;`;
-    document.body.appendChild(p);
-    const tx=Math.cos(angle)*spd, ty=Math.sin(angle)*spd;
-    p.animate([
-      {transform:'translate(-50%,-50%) scale(1)',opacity:1},
-      {transform:`translate(calc(-50% + ${tx}px),calc(-50% + ${ty}px)) scale(0)`,opacity:0}
-    ],{duration:600+Math.random()*300,easing:'ease-out'}).onfinish=()=>p.remove();
-  }
 }
 
-// ══════════ FACT ══════════
+// ══════════ FACT — avec "en savoir plus" via Claude ══════════
+let _currentFactTopic='';
+
 function showFact(){
   const f=getNextFact();
+  _currentFactTopic=f.t;
   document.getElementById('fSym').textContent=f.s;
   document.getElementById('fTtl').textContent=f.t;
   document.getElementById('fTxt').textContent=f.tx;
+  // Reset l'expand
+  const expand=document.getElementById('factExpand');
+  expand.style.display='none';
+  expand.innerHTML='';
+  const btn=document.getElementById('factMoreBtn');
+  btn.textContent='✦ en savoir plus';
+  btn.removeAttribute('disabled');
+  btn.onclick=loadMoreFact;
   showOv('factOverlay');
 }
-function closeFact(){hideOv('factOverlay');G.locked=false;nextQ();}
+
+async function loadMoreFact(){
+  const btn=document.getElementById('factMoreBtn');
+  const expand=document.getElementById('factExpand');
+  btn.setAttribute('disabled','');
+  btn.textContent='· · ·';
+  expand.style.display='block';
+  expand.innerHTML='<p class="exp-loading">· · ·</p>';
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:700,
+        messages:[{
+          role:'user',
+          content:`Tu es un tuteur de mathématiques passionné, parlant à un élève québécois (primaire ou secondaire). Le sujet du fait affiché : "${_currentFactTopic}". Réponds UNIQUEMENT avec un objet JSON valide, sans markdown, sans backtick, sans explication hors JSON. Structure exacte : {"exemple":"exemple concret du quotidien en 1-2 phrases simples","bitcoin":"connexion avec Bitcoin ou la cryptographie en 2 phrases accessibles","defi":"un mini-défi mental amusant pour l'élève, 1 phrase"}`
+        }]
+      })
+    });
+    const data=await res.json();
+    const raw=data.content.map(b=>b.text||'').join('').replace(/```json|```/g,'').trim();
+    const p=JSON.parse(raw);
+    expand.innerHTML=`
+      <p class="exp-label">↗ exemple concret</p>
+      <p class="exp-txt">${p.exemple}</p>
+      <p class="exp-label">⚡ connexion bitcoin</p>
+      <p class="exp-txt">${p.bitcoin}</p>
+      <p class="exp-label">🧠 mini-défi</p>
+      <p class="exp-txt">${p.defi}</p>
+    `;
+    btn.textContent='✦ réduire';
+    btn.removeAttribute('disabled');
+    btn.onclick=()=>{
+      expand.style.display='none';
+      btn.textContent='✦ en savoir plus';
+      btn.onclick=loadMoreFact;
+    };
+  }catch(e){
+    expand.innerHTML='<p class="exp-txt" style="color:rgba(255,80,80,0.6);">Connexion impossible. Réessaie!</p>';
+    btn.textContent='✦ réessayer';
+    btn.removeAttribute('disabled');
+    btn.onclick=loadMoreFact;
+  }
+}
+
+function closeFact(){
+  document.getElementById('factExpand').style.display='none';
+  hideOv('factOverlay');
+  G.locked=false;nextQ();
+}
 
 // ══════════ LEVEL UP ══════════
 function doLvlUp(){
-  G.level=Math.min(G.level+1,LEVELS.length-1);
-  patchSave({level:G.level});
-  const l=getLvl();
+  G.level=Math.min(G.level+1,LEVELS.length-1);patchSave({level:G.level});const l=getLvl();
   document.getElementById('luNum').textContent=G.level+1;
   document.getElementById('luName').textContent=l.name;
-  document.getElementById('luGrade').textContent=l.grade||'';
   document.getElementById('luDesc').textContent=l.desc;
   sndLvlUp();showOv('lvlupOverlay');
 }
@@ -825,75 +710,45 @@ function triggerSecret(idx){
   document.getElementById('secSym').textContent=s.s;
   document.getElementById('secTtl').textContent=s.t;
   document.getElementById('secTxt').textContent=s.tx;
-  sndSecret();showOv('secretOverlay');
-  renderProfile();
+  sndSecret();showOv('secretOverlay');renderProfile();
 }
 function showSecret(){
-  const d=getSave();
-  const idx=d.secretsFound.length>0?d.secretsFound[rand(0,d.secretsFound.length-1)]:rand(0,SECRETS.length-1);
+  const d=getSave();const idx=d.secretsFound.length>0?d.secretsFound[rand(0,d.secretsFound.length-1)]:rand(0,SECRETS.length-1);
   triggerSecret(idx);
 }
 function closeSecret(){hideOv('secretOverlay');G.locked=false;if(document.getElementById('s-game').classList.contains('active'))nextQ();}
 
 // ══════════ DAILY CHALLENGE ══════════
 function showDaily(){
-  const d=getSave();
-  const today=new Date().toDateString();
-  const done=d.dailyDate===today&&d.dailyDone;
-  if(done){
-    document.getElementById('dailyDesc').textContent='Défi déjà complété aujourd\'hui. Reviens demain!';
-    document.getElementById('dailyRewardTxt').textContent='✓ Bonus réclamé';
-    document.getElementById('dailyTimerWrap').style.display='none';
-  } else {
-    document.getElementById('dailyDesc').textContent='10 questions · 60 secondes · niveau actuel';
-    document.getElementById('dailyRewardTxt').textContent='+50 ⚡ bonus';
-    document.getElementById('dailyTimerWrap').style.display='none';
-  }
+  const d=getSave();const today=new Date().toDateString();const done=d.dailyDate===today&&d.dailyDone;
+  if(done){document.getElementById('dailyDesc').textContent='Défi déjà complété aujourd\'hui. Reviens demain!';document.getElementById('dailyRewardTxt').textContent='✓ Bonus réclamé';document.getElementById('dailyTimerWrap').style.display='none';}
+  else{document.getElementById('dailyDesc').textContent='10 questions · 60 secondes · niveau actuel';document.getElementById('dailyRewardTxt').textContent='+50 ⚡ bonus';document.getElementById('dailyTimerWrap').style.display='none';}
   showOv('dailyOverlay');
 }
 let dailyTimerInt=null;
 function startDaily(){
-  const d=getSave();
-  const today=new Date().toDateString();
+  const d=getSave();const today=new Date().toDateString();
   if(d.dailyDate===today&&d.dailyDone){hideOv('dailyOverlay');return;}
-  hideOv('dailyOverlay');
-  G.isDailyActive=true;G.dailyQ=0;G.dailyCorrect=0;
-
-  // Start game in normal mode if not already in game
+  hideOv('dailyOverlay');G.isDailyActive=true;G.dailyQ=0;G.dailyCorrect=0;
   if(!document.getElementById('s-game').classList.contains('active')){
     G.sats=d.sats;G.streak=0;G.level=d.level;G.qCount=0;G.locked=false;G.mode='normal';
     document.getElementById('timerNum').style.display='none';
     document.getElementById('timerFill').style.background='var(--violet)';
     startWormhole(()=>{show('s-game');updateHUD();nextQ();});
-  } else {
-    G.locked=false;nextQ();
-  }
+  }else{G.locked=false;nextQ();}
   sndDaily();
 }
 function finishDaily(){
-  G.isDailyActive=false;
-  clearInterval(dailyTimerInt);
-  const today=new Date().toDateString();
-  const bonus=50;
-  G.sats+=bonus;
+  G.isDailyActive=false;clearInterval(dailyTimerInt);
+  const today=new Date().toDateString();const bonus=50;G.sats+=bonus;
   patchSave({sats:G.sats,dailyDate:today,dailyDone:true});
   document.getElementById('dailyDoneTxt').textContent=`${G.dailyCorrect}/10 correctes · +${bonus} ⚡ bonus ajouté à ton compte!`;
-  sndLvlUp();showOv('dailyDoneOverlay');
-  renderProfile();
+  sndLvlUp();showOv('dailyDoneOverlay');renderProfile();
 }
 function closeDailyDone(){hideOv('dailyDoneOverlay');updateHUD();G.locked=false;nextQ();}
 
-// ══════════ RESET LEVEL ══════════
-function resetLevel(){
-  if(!confirm('Recommencer à Primaire 1 ? Tes satoshis sont conservés.'))return;
-  patchSave({level:0});
-  renderProfile();
-}
-
 // ══════════ INIT ══════════
-checkDayStreak();
-checkName();
-renderProfile();
+checkName();renderProfile();
 </script>
 </body>
 </html>
