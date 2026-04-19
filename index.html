@@ -260,6 +260,9 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ex
       <div class="menu-btn secret" id="secretBtn" onclick="showSecret()" style="display:none;">
         <span class="btn-icon">⬡</span>Tableau caché
       </div>
+      <div class="menu-btn" onclick="resetLevel()" style="border-color:rgba(255,80,80,0.25);color:rgba(255,100,100,0.6);font-size:10px;">
+        <span class="btn-icon">↺</span>Recommencer au niveau 1
+      </div>
     </div>
   </div>
 </div>
@@ -844,6 +847,13 @@ function finishDaily(){
   renderProfile();
 }
 function closeDailyDone(){hideOv('dailyDoneOverlay');updateHUD();G.locked=false;nextQ();}
+
+// ══════════ RESET LEVEL ══════════
+function resetLevel(){
+  if(!confirm('Recommencer à Primaire 1 ? Tes satoshis sont conservés.'))return;
+  patchSave({level:0});
+  renderProfile();
+}
 
 // ══════════ INIT ══════════
 checkName();
