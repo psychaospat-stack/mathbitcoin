@@ -163,28 +163,11 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ex
 .fact-sym{font-family:'Orbitron',sans-serif;font-size:52px;color:var(--gold);margin-bottom:10px;}
 .fact-ttl{font-family:'Orbitron',sans-serif;font-size:10px;letter-spacing:4px;
   color:rgba(255,216,111,0.45);text-transform:uppercase;margin-bottom:10px;}
-.fact-txt{font-size:13px;color:rgba(255,255,255,0.65);line-height:1.75;margin-bottom:16px;}
-
-/* ── EN SAVOIR PLUS ── */
-.fact-expand{display:none;text-align:left;border-top:1px solid rgba(255,216,111,0.12);
-  margin-bottom:16px;padding-top:14px;animation:expandIn 0.3s ease;}
-@keyframes expandIn{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
-.exp-label{font-family:'Orbitron',sans-serif;font-size:9px;letter-spacing:3px;
-  color:rgba(255,216,111,0.4);text-transform:uppercase;margin:10px 0 4px;}
-.exp-label:first-child{margin-top:0;}
-.exp-txt{font-size:12px;color:rgba(255,255,255,0.5);line-height:1.75;margin:0;}
-.exp-loading{font-size:12px;color:rgba(255,216,111,0.25);text-align:center;
-  padding:10px 0;letter-spacing:4px;animation:pulse 1.4s ease-in-out infinite;}
-@keyframes pulse{0%,100%{opacity:0.2;}50%{opacity:1;}}
-
-.fact-btns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
-.ov-btn{padding:10px 20px;border-radius:24px;border:1px solid rgba(255,216,111,0.35);
+.fact-txt{font-size:13px;color:rgba(255,255,255,0.65);line-height:1.75;margin-bottom:22px;}
+.ov-btn{padding:10px 26px;border-radius:24px;border:1px solid rgba(255,216,111,0.35);
   background:rgba(255,216,111,0.07);font-family:'Exo 2',sans-serif;font-size:13px;
   color:rgba(255,255,255,0.8);cursor:pointer;transition:all 0.2s;letter-spacing:1px;}
 .ov-btn:hover{background:rgba(255,216,111,0.16);}
-.ov-btn.secondary{border-color:rgba(255,255,255,0.12);color:rgba(255,255,255,0.4);font-size:12px;}
-.ov-btn.secondary:hover{border-color:rgba(255,255,255,0.25);color:rgba(255,255,255,0.7);}
-.ov-btn:disabled{opacity:0.4;cursor:default;pointer-events:none;}
 
 /* Level up */
 .lvlup-card{text-align:center;padding:36px 28px;max-width:320px;width:90%;}
@@ -228,8 +211,62 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ex
   animation:floatUp 1.1s ease forwards;}
 @keyframes floatUp{0%{opacity:1;transform:translateY(0) scale(1);}100%{opacity:0;transform:translateY(-70px) scale(1.4);}}
 
-/* Name input */
-.name-card{background:rgba(10,6,28,0.97);border:1px solid rgba(255,216,111,0.2);
+/* Break cycle overlay */
+.break-card{background:rgba(10,6,28,0.98);border:1px solid rgba(255,216,111,0.2);
+  border-radius:20px;padding:28px 22px;max-width:320px;width:92%;text-align:center;}
+.break-sats{font-family:'Orbitron',sans-serif;font-size:36px;font-weight:700;
+  color:var(--gold);text-shadow:0 0 20px rgba(255,216,111,0.4);margin:10px 0 4px;}
+.break-label{font-size:11px;letter-spacing:3px;color:rgba(255,255,255,0.3);
+  text-transform:uppercase;margin-bottom:14px;}
+.break-ad{width:100%;height:50px;background:rgba(255,255,255,0.02);
+  border:1px dashed rgba(255,255,255,0.08);border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;letter-spacing:2px;color:rgba(255,255,255,0.12);
+  text-transform:uppercase;margin-bottom:16px;}
+.break-progress{width:100%;height:3px;background:rgba(255,255,255,0.06);
+  border-radius:2px;overflow:hidden;margin-bottom:6px;}
+.break-prog-fill{height:100%;background:linear-gradient(90deg,var(--violet),var(--gold));
+  border-radius:2px;transition:width 0.5s ease;}
+.break-stats{font-size:11px;color:rgba(255,255,255,0.25);margin-bottom:18px;letter-spacing:1px;}
+.break-btn-row{display:flex;gap:8px;}
+.break-btn-row .ov-btn{flex:1;text-align:center;font-size:11px;padding:10px 8px;}
+/* Daily limit banner */
+.limit-card{background:rgba(10,6,28,0.98);border:1px solid rgba(51,232,255,0.25);
+  border-radius:20px;padding:32px 24px;max-width:300px;width:90%;text-align:center;}
+.limit-sym{font-size:44px;margin-bottom:10px;}
+.limit-ttl{font-family:'Orbitron',sans-serif;font-size:10px;letter-spacing:4px;
+  color:rgba(51,232,255,0.5);text-transform:uppercase;margin-bottom:10px;}
+.limit-txt{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.7;margin-bottom:20px;}
+.deep-card{background:rgba(10,6,28,0.98);border:1px solid rgba(255,216,111,0.18);
+  border-radius:20px;padding:24px 20px;max-width:340px;width:92%;
+  max-height:85vh;overflow-y:auto;box-shadow:0 0 60px rgba(123,79,212,0.2);}
+.deep-header{display:flex;align-items:center;gap:12px;margin-bottom:18px;}
+.deep-sym{font-family:'Orbitron',sans-serif;font-size:36px;color:var(--gold);}
+.deep-title{font-family:'Orbitron',sans-serif;font-size:12px;letter-spacing:3px;
+  color:rgba(255,216,111,0.5);text-transform:uppercase;}
+.deep-section{background:rgba(255,255,255,0.02);border:0.5px solid rgba(255,255,255,0.07);
+  border-radius:12px;padding:13px 14px;margin-bottom:10px;}
+.deep-stl{font-size:12px;font-weight:600;color:rgba(255,255,255,0.85);margin-bottom:5px;}
+.deep-stxt{font-size:12px;color:rgba(255,255,255,0.55);line-height:1.75;}
+.deep-icon{font-size:14px;margin-right:5px;}
+.fact-btn-row{display:flex;gap:8px;margin-top:16px;}
+.fact-btn-row .ov-btn{flex:1;text-align:center;font-size:11px;padding:9px 10px;}
+.ov-btn-more{border-color:rgba(123,79,212,0.5)!important;background:rgba(123,79,212,0.08)!important;
+  color:#c4aaff!important;}
+/* ═══ CREATURE ═══ */
+.creature-wrap{position:relative;z-index:6;display:flex;flex-direction:column;
+  align-items:center;gap:4px;margin:2px 0;}
+.creature{font-size:clamp(36px,10vw,52px);
+  transition:transform 0.15s;filter:drop-shadow(0 0 8px rgba(255,216,111,0.3));
+  cursor:default;user-select:none;}
+.creature.bounce{animation:cBounce 0.4s ease;}
+.creature.shake{animation:cShake 0.35s ease;}
+@keyframes cBounce{0%{transform:scale(1);}30%{transform:scale(1.5) rotate(-8deg);}60%{transform:scale(0.9) rotate(4deg);}100%{transform:scale(1);}}
+@keyframes cShake{0%,100%{transform:translateX(0);}25%{transform:translateX(-8px);}75%{transform:translateX(8px);}}
+.creature-name{font-family:'Orbitron',sans-serif;font-size:9px;letter-spacing:3px;
+  color:rgba(255,216,111,0.3);text-transform:uppercase;}
+/* Confetti canvas */
+#confetti-canvas{position:fixed;inset:0;pointer-events:none;z-index:150;}
   border-radius:20px;padding:32px 26px;max-width:300px;width:88%;text-align:center;}
 .name-title{font-family:'Orbitron',sans-serif;font-size:11px;letter-spacing:4px;
   color:rgba(255,216,111,0.5);text-transform:uppercase;margin-bottom:16px;}
@@ -238,10 +275,16 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ex
   font-family:'Orbitron',sans-serif;font-size:16px;color:#fff;
   text-align:center;letter-spacing:2px;outline:none;margin-bottom:16px;}
 .name-input:focus{border-color:rgba(255,216,111,0.7);}
+.break-ai-loading{display:flex;flex-direction:column;align-items:center;gap:8px;padding:10px 0;}
+.ai-spinner{width:28px;height:28px;border:2px solid rgba(255,216,111,0.15);
+  border-top:2px solid var(--gold);border-radius:50%;animation:spin 0.8s linear infinite;}
+.ai-status{font-size:10px;letter-spacing:2px;color:rgba(255,216,111,0.4);
+  text-transform:uppercase;text-align:center;}
 </style>
 </head>
 <body>
 <canvas id="bg-canvas"></canvas>
+<canvas id="confetti-canvas"></canvas>
 
 <!-- HOME -->
 <div class="screen active" id="s-home">
@@ -254,6 +297,13 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ex
     </div>
     <div class="home-title">MathBitcoin</div>
     <div class="home-sub">le langage de l'univers</div>
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+      <div style="padding:3px 12px;border-radius:20px;border:1px solid rgba(255,80,80,0.5);
+        background:rgba(255,80,80,0.08);font-family:'Orbitron',sans-serif;
+        font-size:9px;letter-spacing:3px;color:rgba(255,120,120,0.9);text-transform:uppercase;">
+        ⚠ version bêta — sats simulés
+      </div>
+    </div>
     <div class="profile-card" id="profileCard">
       <div class="profile-avatar" id="profileAvatar">?</div>
       <div class="profile-info">
@@ -310,9 +360,17 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ex
       <div class="timer-num" id="timerNum" style="display:none;">30</div>
     </div>
   </div>
+  <div class="creature-wrap">
+    <div class="creature" id="creature">🥚</div>
+    <div class="creature-name" id="creatureName">Pico cosmique</div>
+  </div>
   <div class="ans-wrap"><div class="answers" id="ansGrid"></div></div>
   <div class="prog-wrap"><div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div></div>
   <div class="ad-zone">
+    <!-- REMPLACE PAR TON TAG ADSENSE :
+    <ins class="adsbygoogle" style="display:inline-block;width:320px;height:50px"
+      data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX"></ins>
+    -->
     <div class="ad-slot">espace adsense</div>
   </div>
 </div>
@@ -325,21 +383,27 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ex
     <div class="ov-btn" onclick="saveName()">commencer l'exploration →</div>
   </div>
 </div>
-
-<!-- FACT OVERLAY — avec "en savoir plus" -->
 <div class="overlay" id="factOverlay">
   <div class="fact-card">
     <div class="fact-sym" id="fSym">∞</div>
     <div class="fact-ttl" id="fTtl">saviez-vous?</div>
     <div class="fact-txt" id="fTxt"></div>
-    <div class="fact-expand" id="factExpand"></div>
-    <div class="fact-btns">
-      <div class="ov-btn secondary" id="factMoreBtn" onclick="loadMoreFact()">✦ en savoir plus</div>
+    <div class="fact-btn-row">
+      <div class="ov-btn ov-btn-more" onclick="openDeep()">En savoir plus →</div>
       <div class="ov-btn" onclick="closeFact()">continuer →</div>
     </div>
   </div>
 </div>
-
+<div class="overlay" id="deepOverlay">
+  <div class="deep-card" id="deepCard">
+    <div class="deep-header">
+      <div class="deep-sym" id="dSym">π</div>
+      <div class="deep-title" id="dTitle">exploration approfondie</div>
+    </div>
+    <div id="deepSections"></div>
+    <div class="ov-btn" style="width:100%;text-align:center;margin-top:4px;" onclick="closeDeep()">revenir au jeu →</div>
+  </div>
+</div>
 <div class="overlay" id="lvlupOverlay">
   <div class="lvlup-card">
     <div class="lvlup-ring"><div class="lvlup-num" id="luNum">2</div></div>
@@ -378,6 +442,39 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ex
   </div>
 </div>
 
+<!-- BREAK CYCLE — toutes les 5 bonnes réponses -->
+<div class="overlay" id="breakOverlay">
+  <div class="break-card">
+    <div class="fact-ttl" style="margin-bottom:6px;">⚡ pause cosmique</div>
+    <div class="break-sats" id="breakSats">+5</div>
+    <div class="break-label">sats simulés · version bêta</div>
+    <div class="break-ad" id="breakAdSlot">espace annonce</div>
+    <div class="break-progress">
+      <div class="break-prog-fill" id="breakProgFill" style="width:0%"></div>
+    </div>
+    <div class="break-stats" id="breakStats">0 / 250 questions aujourd'hui</div>
+    <!-- État chargement IA -->
+    <div class="break-ai-loading" id="breakLoading" style="display:none;">
+      <div class="ai-spinner"></div>
+      <div class="ai-status" id="breakLoadingTxt">l'univers réfléchit...</div>
+    </div>
+    <div class="break-btn-row" id="breakBtns">
+      <div class="ov-btn ov-btn-more" id="breakLearnBtn" onclick="breakOpenDeep()">En savoir plus →</div>
+      <div class="ov-btn" onclick="closeBreak()">5 prochaines →</div>
+    </div>
+  </div>
+</div>
+
+<!-- LIMITE JOURNALIÈRE ATTEINTE -->
+<div class="overlay" id="limitOverlay">
+  <div class="limit-card">
+    <div class="limit-sym">🌙</div>
+    <div class="limit-ttl">mission du jour accomplie</div>
+    <div class="limit-txt" id="limitTxt">Tu as répondu à 250 questions aujourd'hui.<br>Reviens demain pour continuer ton année scolaire.</div>
+    <div class="ov-btn" onclick="hideOv('limitOverlay');show('s-home');">retour à l'univers →</div>
+  </div>
+</div>
+
 <script>
 // ══════════ CANVAS STARFIELD ══════════
 const cv=document.getElementById('bg-canvas');
@@ -389,12 +486,115 @@ function dst(t){cx.clearRect(0,0,cv.width,cv.height);cx.fillStyle='#000';cx.fill
 rsz();ist();requestAnimationFrame(dst);
 window.addEventListener('resize',()=>{rsz();ist();});
 
+// ══════════ CONFETTI ENGINE ══════════
+const CC=document.getElementById('confetti-canvas');
+const CX=CC.getContext('2d');
+let CONF=[];
+function rsz2(){CC.width=innerWidth;CC.height=innerHeight;}
+rsz2();window.addEventListener('resize',rsz2);
+
+const CONF_COLORS=['#ffd86f','#ff6bdb','#33e8ff','#3dff9a','#ff7043','#b48fff','#fff'];
+
+function burstConfetti(x,y,count=32){
+  for(let i=0;i<count;i++){
+    const angle=Math.random()*Math.PI*2;
+    const speed=3+Math.random()*7;
+    CONF.push({
+      x,y,
+      vx:Math.cos(angle)*speed,
+      vy:Math.sin(angle)*speed-4,
+      size:4+Math.random()*6,
+      color:CONF_COLORS[Math.floor(Math.random()*CONF_COLORS.length)],
+      rot:Math.random()*360,
+      rotV:(Math.random()-0.5)*12,
+      life:1,decay:0.018+Math.random()*0.012,
+      shape:Math.random()<0.5?'rect':'circle'
+    });
+  }
+}
+function burstStars(x,y){
+  for(let i=0;i<16;i++){
+    const angle=(i/16)*Math.PI*2;
+    CONF.push({
+      x,y,
+      vx:Math.cos(angle)*(2+Math.random()*5),
+      vy:Math.sin(angle)*(2+Math.random()*5),
+      size:2+Math.random()*4,
+      color:'#ffd86f',
+      rot:0,rotV:0,
+      life:1,decay:0.03,shape:'star'
+    });
+  }
+}
+function animConf(){
+  CX.clearRect(0,0,CC.width,CC.height);
+  CONF=CONF.filter(p=>p.life>0);
+  CONF.forEach(p=>{
+    p.x+=p.vx; p.y+=p.vy; p.vy+=0.25;
+    p.vx*=0.98; p.rot+=p.rotV; p.life-=p.decay;
+    CX.save();
+    CX.globalAlpha=Math.max(0,p.life);
+    CX.translate(p.x,p.y);
+    CX.rotate(p.rot*Math.PI/180);
+    CX.fillStyle=p.color;
+    if(p.shape==='rect'){CX.fillRect(-p.size/2,-p.size/2,p.size,p.size*0.6);}
+    else if(p.shape==='star'){
+      CX.beginPath();for(let j=0;j<5;j++){
+        const a=(j*4*Math.PI/5)-Math.PI/2;
+        const r=j%2===0?p.size:p.size*0.4;
+        j===0?CX.moveTo(Math.cos(a)*r,Math.sin(a)*r):CX.lineTo(Math.cos(a)*r,Math.sin(a)*r);
+      }CX.closePath();CX.fill();
+    } else {CX.beginPath();CX.arc(0,0,p.size/2,0,Math.PI*2);CX.fill();}
+    CX.restore();
+  });
+  requestAnimationFrame(animConf);
+}
+requestAnimationFrame(animConf);
+
+// ══════════ CREATURE SYSTEM ══════════
+const CREATURES=[
+  {emoji:'🥚', name:'Pico cosmique',    lvls:[0,1]},
+  {emoji:'🐣', name:'Étoile naissante', lvls:[2,3]},
+  {emoji:'⭐', name:'Étoile brillante', lvls:[4,5]},
+  {emoji:'🌟', name:'Nova pulsante',    lvls:[6,7]},
+  {emoji:'🌌', name:'Gardien du cosmos',lvls:[8,9]},
+  {emoji:'🔮', name:'Maître singularité',lvls:[10]},
+];
+function getCreature(level){
+  return CREATURES.find(c=>c.lvls.includes(level))||CREATURES[CREATURES.length-1];
+}
+function updateCreature(){
+  const c=getCreature(G.level);
+  const el=document.getElementById('creature');
+  const nm=document.getElementById('creatureName');
+  if(el)el.textContent=c.emoji;
+  if(nm)nm.textContent=c.name;
+}
+function creatureBounce(){
+  const el=document.getElementById('creature');
+  if(!el)return;
+  el.classList.remove('bounce','shake');
+  void el.offsetWidth;
+  el.classList.add('bounce');
+  setTimeout(()=>el.classList.remove('bounce'),400);
+}
+function creatureShake(){
+  const el=document.getElementById('creature');
+  if(!el)return;
+  el.classList.remove('bounce','shake');
+  void el.offsetWidth;
+  el.classList.add('shake');
+  setTimeout(()=>el.classList.remove('shake'),350);
+}
+
 // ══════════ AUDIO ENGINE ══════════
 let AC;
 function getAC(){if(!AC)AC=new(window.AudioContext||window.webkitAudioContext)();return AC;}
 function playTone(freq,dur,type='sine',vol=0.15,delay=0){
   try{
-    const ac=getAC();const o=ac.createOscillator();const g=ac.createGain();
+    const ac=getAC();
+    const o=ac.createOscillator();
+    const g=ac.createGain();
     o.connect(g);g.connect(ac.destination);
     o.type=type;o.frequency.setValueAtTime(freq,ac.currentTime+delay);
     g.gain.setValueAtTime(vol,ac.currentTime+delay);
@@ -402,25 +602,55 @@ function playTone(freq,dur,type='sine',vol=0.15,delay=0){
     o.start(ac.currentTime+delay);o.stop(ac.currentTime+delay+dur);
   }catch(e){}
 }
-function sndCorrect(){playTone(523,0.12,'sine',0.12);playTone(659,0.12,'sine',0.10,0.1);playTone(784,0.18,'sine',0.10,0.2);}
-function sndWrong(){playTone(220,0.08,'sawtooth',0.08);playTone(180,0.15,'sawtooth',0.07,0.09);}
-function sndLvlUp(){[523,659,784,1047].forEach((f,i)=>playTone(f,0.22,'sine',0.12,i*0.12));}
+function sndCorrect(){
+  playTone(523,0.12,'sine',0.12);
+  playTone(659,0.12,'sine',0.10,0.1);
+  playTone(784,0.18,'sine',0.10,0.2);
+}
+function sndWrong(){
+  playTone(220,0.08,'sawtooth',0.08);
+  playTone(180,0.15,'sawtooth',0.07,0.09);
+}
+function sndLvlUp(){
+  [523,659,784,1047].forEach((f,i)=>playTone(f,0.22,'sine',0.12,i*0.12));
+}
 function sndTick(){playTone(880,0.05,'sine',0.05);}
-function sndSecret(){playTone(440,0.3,'sine',0.08);playTone(554,0.3,'sine',0.07,0.15);playTone(659,0.5,'sine',0.09,0.3);}
-function sndDaily(){[392,523,659,784].forEach((f,i)=>playTone(f,0.25,'triangle',0.1,i*0.1));}
+function sndSecret(){
+  playTone(440,0.3,'sine',0.08);
+  playTone(554,0.3,'sine',0.07,0.15);
+  playTone(659,0.5,'sine',0.09,0.3);
+}
+function sndDaily(){
+  [392,523,659,784].forEach((f,i)=>playTone(f,0.25,'triangle',0.1,i*0.1));
+}
 
 // ══════════ SAVE / LOAD ══════════
 const SAVE_KEY='mbv3';
-function loadSave(){try{return JSON.parse(localStorage.getItem(SAVE_KEY))||{};}catch(e){return{};}}
-function writeSave(d){try{localStorage.setItem(SAVE_KEY,JSON.stringify(d));}catch(e){}}
+function loadSave(){
+  try{return JSON.parse(localStorage.getItem(SAVE_KEY))||{};}catch(e){return{};}
+}
+function writeSave(d){
+  try{localStorage.setItem(SAVE_KEY,JSON.stringify(d));}catch(e){}
+}
 function getSave(){
   let d=loadSave();
-  if(!d.name)d.name='';if(!d.sats)d.sats=0;if(!d.level)d.level=0;
-  if(!d.totalQ)d.totalQ=0;if(!d.secretsFound)d.secretsFound=[];
-  if(!d.dailyDate)d.dailyDate='';if(!d.dailyDone)d.dailyDone=false;
+  if(!d.name)d.name='';
+  if(!d.sats)d.sats=0;
+  if(!d.level)d.level=0;
+  if(!d.levelProgress)d.levelProgress=0; // questions correctes dans l'année scolaire actuelle
+  if(!d.totalQ)d.totalQ=0;
+  if(!d.secretsFound)d.secretsFound=[];
+  if(!d.dailyDate)d.dailyDate='';
+  if(!d.dailyDone)d.dailyDone=false;
+  // Compteur journalier (reset chaque jour)
+  const today=new Date().toDateString();
+  if(d.dailyQDate!==today){d.dailyQDate=today;d.dailyQCount=0;}
+  if(!d.dailyQCount)d.dailyQCount=0;
   return d;
 }
-function patchSave(obj){const d=getSave();Object.assign(d,obj);writeSave(d);return d;}
+function patchSave(obj){
+  const d=getSave();Object.assign(d,obj);writeSave(d);return d;
+}
 
 // ══════════ PROFILE ══════════
 function renderProfile(){
@@ -430,78 +660,347 @@ function renderProfile(){
   document.getElementById('profileSats').textContent=d.sats+'⚡';
   document.getElementById('profileLvl').textContent=d.level+1;
   document.getElementById('profileQ').textContent=d.totalQ;
+  // Daily badge
   const today=new Date().toDateString();
   const done=d.dailyDate===today&&d.dailyDone;
   const badge=document.getElementById('dailyBadge');
   badge.textContent=done?'FAIT':'NOUVEAU';
   badge.className='daily-badge'+(done?' daily-done':'');
+  // Secret button
   const sb=document.getElementById('secretBtn');
   if(d.totalQ>=20||d.secretsFound.length>0)sb.style.display='flex';
 }
 
 // ══════════ SCREEN SWITCH ══════════
-function show(id,delay=0){setTimeout(()=>{document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');},delay);}
+function show(id,delay=0){
+  setTimeout(()=>{
+    document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  },delay);
+}
 function showOv(id){document.getElementById(id).classList.add('show');}
 function hideOv(id){document.getElementById(id).classList.remove('show');}
 
 // ══════════ NAME INPUT ══════════
-function checkName(){const d=getSave();if(!d.name){showOv('nameOverlay');}else renderProfile();}
-function saveName(){const n=document.getElementById('nameInput').value.trim();if(!n)return;patchSave({name:n});hideOv('nameOverlay');renderProfile();}
+function checkName(){
+  const d=getSave();
+  if(!d.name){showOv('nameOverlay');}
+  else renderProfile();
+}
+function saveName(){
+  const n=document.getElementById('nameInput').value.trim();
+  if(!n)return;
+  patchSave({name:n});
+  hideOv('nameOverlay');
+  renderProfile();
+}
 document.getElementById('nameInput').addEventListener('keydown',e=>{if(e.key==='Enter')saveName();});
 
 // ══════════ PORTAL / WORMHOLE ══════════
-function enterPortal(){startWormhole(()=>{startGame('normal');});}
+function enterPortal(){
+  startWormhole(()=>{startGame('normal');});
+}
 function startWormhole(cb){
   show('s-worm');
   const c=document.getElementById('wormC');c.innerHTML='';
-  for(let i=0;i<10;i++){const r=document.createElement('div');const sz=14+i*15;r.style.cssText=`position:absolute;width:${sz}px;height:${sz}px;border-radius:50%;border:1px solid rgba(255,216,111,0);transform:scale(0);animation:vox 1.8s ease forwards;animation-delay:${i*0.06}s;`;c.appendChild(r);}
-  for(let i=0;i<36;i++){const s=document.createElement('div');const a=(i/36)*360,d=Math.random()*0.5,th=Math.random()<0.25?2:1;s.style.cssText=`position:absolute;top:50%;left:50%;width:${th}px;height:0;transform:translate(-50%,0) rotate(${a}deg);transform-origin:50% 0;background:linear-gradient(to bottom,rgba(255,216,111,0),rgba(255,216,111,0.9),#fff);opacity:0;animation:stk 1.4s ease-out forwards;animation-delay:${d}s;`;c.appendChild(s);}
-  const st=document.createElement('style');st.textContent=`@keyframes vox{0%{transform:scale(0);border-color:rgba(255,216,111,0.8);opacity:1;}100%{transform:scale(9);border-color:rgba(255,216,111,0);opacity:0;}}@keyframes stk{0%{opacity:0;height:0;}15%{opacity:1;}100%{opacity:0;height:62vmax;}}`;document.head.appendChild(st);
+  // Vortex
+  for(let i=0;i<10;i++){
+    const r=document.createElement('div');
+    const sz=14+i*15;
+    r.style.cssText=`position:absolute;width:${sz}px;height:${sz}px;border-radius:50%;
+      border:1px solid rgba(255,216,111,0);transform:scale(0);
+      animation:vox 1.8s ease forwards;animation-delay:${i*0.06}s;`;
+    c.appendChild(r);
+  }
+  // Streaks
+  for(let i=0;i<36;i++){
+    const s=document.createElement('div');
+    const a=(i/36)*360,d=Math.random()*0.5,th=Math.random()<0.25?2:1;
+    s.style.cssText=`position:absolute;top:50%;left:50%;width:${th}px;height:0;
+      transform:translate(-50%,0) rotate(${a}deg);transform-origin:50% 0;
+      background:linear-gradient(to bottom,rgba(255,216,111,0),rgba(255,216,111,0.9),#fff);
+      opacity:0;animation:stk 1.4s ease-out forwards;animation-delay:${d}s;`;
+    c.appendChild(s);
+  }
+  const st=document.createElement('style');
+  st.textContent=`
+    @keyframes vox{0%{transform:scale(0);border-color:rgba(255,216,111,0.8);opacity:1;}100%{transform:scale(9);border-color:rgba(255,216,111,0);opacity:0;}}
+    @keyframes stk{0%{opacity:0;height:0;}15%{opacity:1;}100%{opacity:0;height:62vmax;}}
+  `;
+  document.head.appendChild(st);
   setTimeout(()=>{document.getElementById('wormFlash').style.opacity='1';},1500);
   setTimeout(()=>{if(cb)cb();},1900);
 }
 
-// ══════════ LEVELS ══════════
+// ══════════ LEVELS — Programme québécois réel ══════════
 const LEVELS=[
-  {name:'Le Pico',    desc:'L\'univers naît d\'un point.',    ops:['+'],            max:10, qpl:8 },
-  {name:'Le Cercle',  desc:'La première forme parfaite.',     ops:['+','-'],        max:15, qpl:8 },
-  {name:'La Spirale', desc:'Phi structure toute croissance.', ops:['+','-'],        max:20, qpl:10},
-  {name:'Le Triangle',desc:'La stabilité vient de 3 points.',ops:['+','-','×'],     max:12, qpl:10},
-  {name:'La Symétrie',desc:'L\'univers aime l\'équilibre.',   ops:['+','-','×'],    max:15, qpl:10},
-  {name:'Le Portail', desc:'Tu traverses vers plus loin.',    ops:['+','-','×','÷'],max:12, qpl:12},
-  {name:'La Constellation',desc:'Les étoiles obéissent aux maths.',ops:['+','-','×','÷'],max:20,qpl:12},
-  {name:'L\'Univers', desc:'Tu lis le langage du cosmos.',    ops:['+','-','×','÷'],max:25, qpl:15},
+  // 0 — 1re année (6-7 ans)
+  {name:'Le Pico',        grade:'1re année',
+   desc:'L\'univers naît du premier nombre.',
+   type:'basic', ops:['+','-'], max:10, qpl:8},
+  // 1 — 2e année (7-8 ans)
+  {name:'Le Cercle',      grade:'2e année',
+   desc:'La première forme parfaite se construit avec 20.',
+   type:'basic', ops:['+','-'], max:20, qpl:8},
+  // 2 — 3e année (8-9 ans) — tables x2 x3 x4 x5
+  {name:'La Spirale',     grade:'3e année',
+   desc:'Phi structure toute croissance — et les tables aussi.',
+   type:'tables', tables:[2,3,4,5], max:50, qpl:10},
+  // 3 — 4e année (9-10 ans) — tables complètes + grands nombres
+  {name:'Le Triangle',    grade:'4e année',
+   desc:'La stabilité vient de 3 points et des tables complètes.',
+   type:'tables', tables:[1,2,3,4,5,6,7,8,9,10], max:100, qpl:10},
+  // 4 — 5e année (10-11 ans) — division + nombre manquant
+  {name:'La Symétrie',    grade:'5e année',
+   desc:'L\'équilibre : trouver le nombre manquant.',
+   type:'missing', tables:[1,2,3,4,5,6,7,8,9,10], max:100, qpl:10},
+  // 5 — 6e année (11-12 ans) — pourcentages + ordre des opérations
+  {name:'Le Portail',     grade:'6e année',
+   desc:'Tu traverses vers les fractions et les pourcentages.',
+   type:'percent', max:100, qpl:12},
+  // 6 — Secondaire 1 (12-13 ans) — entiers négatifs
+  {name:'La Constellation',grade:'Sec · 1',
+   desc:'Les étoiles obéissent aux nombres négatifs.',
+   type:'integers', max:20, qpl:12},
+  // 7 — Secondaire 2 (13-14 ans) — algèbre simple
+  {name:'L\'Univers',     grade:'Sec · 2',
+   desc:'Tu lis le langage du cosmos : algèbre et équations.',
+   type:'algebra', max:15, qpl:15},
+  // 8 — Secondaire 3 (14-15 ans) — fonctions linéaires + Pythagore
+  {name:'Le Vortex',      grade:'Sec · 3',
+   desc:'Les fonctions décrivent le mouvement de l\'univers.',
+   type:'linear', max:20, qpl:15},
+  // 9 — Secondaire 4 (15-16 ans) — quadratiques + trig de base
+  {name:'L\'Horizon',     grade:'Sec · 4',
+   desc:'Les courbes cachent l\'ordre du cosmos.',
+   type:'quadratic', max:12, qpl:15},
+  // 10 — Secondaire 5 (16-17 ans) — logarithmes + suites
+  {name:'Le Singularité', grade:'Sec · 5',
+   desc:'Tu touches le langage pur de l\'univers.',
+   type:'advanced', max:10, qpl:15},
 ];
-const DOMAINS={'+':'addition','-':'soustraction','×':'multiplication','÷':'division'};
 
-// ══════════ MATH FACTS ══════════
-const FACTS=[
-  {s:'π', t:'le nombre π',          tx:'Pi est partout : dans les cercles, les ondes, la lumière. Il est le même partout dans l\'univers, des atomes aux galaxies.'},
-  {s:'φ', t:'le nombre d\'or',      tx:'Phi (1.618...) gouverne la spirale des coquillages, la disposition des graines de tournesol, et la croissance des galaxies.'},
-  {s:'0', t:'le zéro',              tx:'Le zéro n\'existait pas dans l\'arithmétique antique. Les Mayas l\'ont inventé vers 350 apr. J.-C. — une révolution qui a rendu l\'algèbre possible.'},
-  {s:'∞', t:'l\'infini',            tx:'Certains infinis sont plus grands que d\'autres. L\'infini des nombres réels est strictement plus grand que l\'infini des entiers.'},
-  {s:'√2',t:'la racine de 2',       tx:'Les Babyloniens connaissaient √2 il y a 3700 ans, gravé sur une tablette d\'argile. C\'est la diagonale d\'un carré de côté 1.'},
-  {s:'∑', t:'les sommes de Gauss',  tx:'Gauss a calculé 1+2+...+100 = 5050 à 7 ans en quelques secondes. Il avait vu que chaque paire (1+100, 2+99...) valait toujours 101.'},
-  {s:'e', t:'le nombre e',          tx:'e = 2.718... est la base de la croissance naturelle. Les populations, les intérêts composés et la radioactivité suivent tous ce nombre.'},
-  {s:'i', t:'le nombre imaginaire', tx:'i = √(-1) n\'existe pas sur la droite des réels — mais il permet de décrire les ondes électromagnétiques et les circuits électroniques.'},
-  {s:'p', t:'les nombres premiers', tx:'Les nombres premiers (2, 3, 5, 7, 11...) sont les atomes des mathématiques. Chaque entier peut être décomposé en produit de nombres premiers — de façon unique.'},
-  {s:'₿', t:'Bitcoin',              tx:'Bitcoin a été créé en 2008 par Satoshi Nakamoto. Il n\'y aura jamais plus de 21 millions de BTC — cette limite est inscrite dans le code pour toujours.'},
-  {s:'⚡',t:'le satoshi',           tx:'1 Bitcoin = 100 000 000 satoshis. Le satoshi est la plus petite unité de Bitcoin. Si 1 BTC vaut 100 000$, 1 satoshi vaut 0.1 centime.'},
-  {s:'½', t:'le halving',           tx:'Tous les 210 000 blocs (~4 ans), la récompense des mineurs est divisée par 2. Ce «halving» rend Bitcoin plus rare avec le temps.'},
-  {s:'🔑',t:'la cryptographie',     tx:'Bitcoin utilise la cryptographie à courbe elliptique. Trouver ta clé privée en cassant l\'algorithme prendrait plus de temps que l\'âge de l\'univers.'},
-  {s:'21',t:'21 millions',          tx:'21 millions de bitcoins maximum. Pas un de plus. Cette limite mathématique est la raison pour laquelle Bitcoin est rare — comme l\'or, mais vérifiable par tous.'},
+const DOMAINS={
+  '+':'addition','-':'soustraction','×':'multiplication','÷':'division',
+  'missing':'nombre manquant','%':'pourcentage','neg':'entiers','alg':'algèbre'
+};
+
+// ══════════ MATH FACTS PAR NIVEAU D'ÂGE ══════════
+// Chaque niveau a ses propres faits adaptés à l'âge
+
+const FACTS_BY_LEVEL = {
+
+  // ─── 1re ANNÉE (6-7 ans) ───────────────────────────────────────────────
+  0: [
+    {s:'👐',t:'tes 10 doigts',
+     tx:'Tu as 10 doigts. C\'est pour ça qu\'on compte jusqu\'à 10! Les humains ont toujours compté avec leurs mains depuis la nuit des temps.',
+     deep:[
+       {icon:'🖐',ttl:'5 + 5 = 10',txt:'Compte ta main gauche : 1, 2, 3, 4, 5. Maintenant la droite : 6, 7, 8, 9, 10. Tes mains sont ta première calculatrice — et tu l\'as toujours avec toi!'},
+       {icon:'🦶',ttl:'Et tes orteils?',txt:'Si tu comptes tes orteils aussi, tu arrives à 20! C\'est pour ça que certains peuples comptaient en 20. Les Mayas comptaient comme ça.'},
+       {icon:'🌍',ttl:'Tout le monde fait pareil',txt:'Les enfants au Japon, en Afrique, au Canada — tout le monde apprend à compter avec ses doigts. C\'est universel!'},
+       {icon:'🧠',ttl:'Ton cerveau adore ça',txt:'Quand tu comptes sur tes doigts, ton cerveau s\'allume partout. C\'est prouvé : bouger les doigts aide à apprendre les maths!'},
+     ]},
+    {s:'0️⃣',t:'le zéro c\'est quoi?',
+     tx:'Zéro veut dire "rien". Si tu as 3 bonbons et que tu les manges tous — il reste zéro bonbon. Pas de bonbons du tout!',
+     deep:[
+       {icon:'🍬',ttl:'Zéro bonbon',txt:'3 bonbons. Tu en manges 1 → 2. Tu en manges 1 → 1. Tu en manges le dernier → 0. Zero. Plus rien. C\'est ça le zéro!'},
+       {icon:'😮',ttl:'Pendant longtemps il existait pas!',txt:'Il y a très longtemps, les gens n\'avaient pas de zéro. Ils ne savaient pas comment écrire "rien"! C\'est des inventeurs de l\'Inde qui l\'ont créé.'},
+       {icon:'🎲',ttl:'Zéro c\'est important',txt:'Sans zéro, on ne pourrait pas écrire 10, 20, 100, 1000... Le zéro permet de faire des très grands nombres!'},
+       {icon:'💻',ttl:'Zéro et les jeux vidéo',txt:'Tous les jeux vidéo et tous les téléphones fonctionnent avec des 0 et des 1. Le zéro est partout dans la technologie!'},
+     ]},
+    {s:'➕',t:'additionner c\'est quoi?',
+     tx:'Additionner c\'est AJOUTER. Tu as 2 pommes, ton ami t\'en donne 3 de plus — maintenant tu en as 5. Tu as ajouté!',
+     deep:[
+       {icon:'🍎',ttl:'Ajouter des pommes',txt:'2 pommes + 3 pommes = 5 pommes. C\'est ça l\'addition! Le signe + veut dire "ajouter ensemble".'},
+       {icon:'🏠',ttl:'Dans ta maison',txt:'Tu as 1 chat. Ton voisin t\'en donne 1 autre. 1 + 1 = 2 chats! L\'addition se passe partout dans ta vie.'},
+       {icon:'🎂',ttl:'Les bougies d\'anniversaire',txt:'À ton anniversaire tu avais 5 bougies. Maintenant tu en as 6. C\'est une addition : 5 + 1 = 6!'},
+       {icon:'⚡',ttl:'Et les sats?',txt:'Chaque fois que tu gagnes des sats dans ce jeu, c\'est une addition! Tu en avais 5, tu en gagnes 5 de plus : 5 + 5 = 10 sats!'},
+     ]},
+    {s:'➖',t:'soustraire c\'est quoi?',
+     tx:'Soustraire c\'est ENLEVER. Tu as 5 biscuits, tu en manges 2 — il reste 3. Tu as enlevé des biscuits!',
+     deep:[
+       {icon:'🍪',ttl:'Enlever des biscuits',txt:'5 biscuits. Tu en manges 2. 5 - 2 = 3 biscuits. Le signe − veut dire "enlever".'},
+       {icon:'🎈',ttl:'Des ballons qui partent',txt:'Tu avais 7 ballons. Le vent en emporte 3. 7 - 3 = 4 ballons. Triste pour les ballons, mais c\'est une belle soustraction!'},
+       {icon:'🐟',ttl:'Les poissons dans l\'aquarium',txt:'8 poissons dans l\'aquarium. Tu en donnes 2 à un ami. 8 - 2 = 6 poissons. L\'aquarium est moins plein!'},
+       {icon:'🔙',ttl:'L\'addition à l\'envers',txt:'La soustraction c\'est l\'addition à l\'envers. 3 + 4 = 7, donc 7 - 4 = 3. C\'est comme défaire ce qu\'on a fait!'},
+     ]},
+    {s:'2️⃣',t:'les paires',
+     tx:'Une paire c\'est 2 choses pareilles! Tes souliers forment une paire. Tes yeux aussi. Tes mains aussi. Tout ce qui va par 2!',
+     deep:[
+       {icon:'👟',ttl:'Une paire de souliers',txt:'Gauche + droite = une paire. 1 + 1 = 2. Si tu perds 1 soulier, tu n\'as plus une paire. Tu en as juste... 1!'},
+       {icon:'👀',ttl:'Deux yeux, deux oreilles',txt:'Ton corps a beaucoup de paires : 2 yeux, 2 oreilles, 2 bras, 2 jambes. La nature aime les paires!'},
+       {icon:'🎭',ttl:'Les nombres pairs',txt:'2, 4, 6, 8, 10... Ce sont les nombres pairs. Tu peux toujours les séparer en deux groupes égaux. 6 = 3 + 3.'},
+       {icon:'🧦',ttl:'Les chaussettes',txt:'Si tu as 6 chaussettes dans le tiroir, tu peux faire 3 paires. 6 ÷ 2 = 3. Les maths aident à trouver tes chaussettes!'},
+     ]},
+    {s:'🔢',t:'l\'ordre des nombres',
+     tx:'1, 2, 3, 4, 5... Les nombres ont toujours le même ordre. Après 5 vient toujours 6. Jamais 7 directement, toujours 6!',
+     deep:[
+       {icon:'🪜',ttl:'L\'escalier des nombres',txt:'Les nombres c\'est comme un escalier. Tu montes une marche à la fois : 1, 2, 3, 4, 5... Chaque nombre est juste "1 de plus" que le précédent.'},
+       {icon:'🏃',ttl:'La course',txt:'Dans une course, il y a un 1er, un 2e, un 3e... L\'ordre est important! 1er c\'est pas pareil que 3e.'},
+       {icon:'📅',ttl:'Les jours de la semaine',txt:'Après lundi vient toujours mardi. Après mardi vient mercredi. Les jours ont un ordre, comme les nombres!'},
+       {icon:'🎵',ttl:'La musique',txt:'Do, Ré, Mi, Fa, Sol, La, Si... Les notes de musique ont un ordre aussi. La musique c\'est des maths qu\'on entend!'},
+     ]},
+    {s:'⬛',t:'les formes',
+     tx:'Un carré a 4 côtés pareils. Un cercle est tout rond. Un triangle a 3 coins. Les formes sont partout autour de toi!',
+     deep:[
+       {icon:'🔷',ttl:'Le carré',txt:'4 côtés, tous pareils. 4 coins. Un Rubik\'s cube est fait de carrés. Une feuille de papier est presque un carré!'},
+       {icon:'🔵',ttl:'Le cercle',txt:'Rond, rond, rond! 0 coin, 0 côté droit. Une pizza, un soleil, une roue — tous des cercles. Le cercle est la forme la plus parfaite!'},
+       {icon:'🔺',ttl:'Le triangle',txt:'3 côtés, 3 coins. Le triangle est la forme la plus solide! Les pyramides d\'Égypte sont des triangles. Les ponts aussi.'},
+       {icon:'🏠',ttl:'Les formes dans ta maison',txt:'La porte est un rectangle. La fenêtre est un carré. Le toit est un triangle. Ta maison est faite de formes mathématiques!'},
+     ]},
+    {s:'🔁',t:'compter par 2',
+     tx:'2, 4, 6, 8, 10... Tu sautes des nombres! C\'est compter par bonds de 2. C\'est plus vite que compter 1 par 1.',
+     deep:[
+       {icon:'🐸',ttl:'La grenouille qui saute',txt:'Imagine une grenouille sur la ligne des nombres. Elle saute par 2 : 2, 4, 6, 8, 10. Elle saute 2 cases à la fois!'},
+       {icon:'🧦',ttl:'Les chaussettes encore!',txt:'Quand tu comptes des paires de chaussettes, tu comptes par 2 : 2, 4, 6, 8... C\'est plus rapide!'},
+       {icon:'👣',ttl:'Tes pas',txt:'Quand tu marches, tu fais des paires de pas. Gauche-droite c\'est 2. Encore gauche-droite : 4. Tu comptes par 2 sans le savoir!'},
+       {icon:'💡',ttl:'Pourquoi c\'est utile?',txt:'Compter par 2 c\'est la base de la multiplication! Quand tu sauras 2 × 3, c\'est juste 2 + 2 + 2. Tu apprends déjà la base!'},
+     ]},
+    {s:'📏',t:'plus grand ou plus petit?',
+     tx:'5 est plus grand que 3. 2 est plus petit que 8. Le signe > veut dire "plus grand que". Le signe < veut dire "plus petit que".',
+     deep:[
+       {icon:'🐘',ttl:'L\'éléphant et la souris',txt:'L\'éléphant est plus grand que la souris. 100 > 1. En maths, on écrit ça avec le signe >. La pointe du < et > pointe toujours vers le plus petit!'},
+       {icon:'🎯',ttl:'Le truc pour retenir',txt:'< et > — la pointe pointe vers le petit nombre. 3 < 7 (la pointe est sur 3, le plus petit). 9 > 2 (la pointe est sur 2). Comme un crocodile qui mange le plus grand!'},
+       {icon:'🌡',ttl:'La température',txt:'10 degrés c\'est plus froid que 20 degrés. 10 < 20. En hiver c\'est -10, qui est encore plus petit! Les nombres peuvent aller très loin dans les deux sens.'},
+       {icon:'🏆',ttl:'Au jeu',txt:'Si tu marques 7 points et ton ami en a 5, tu gagnes! 7 > 5. Les maths décident qui gagne!'},
+     ]},
+    {s:'🌙',t:'les nombres pairs et impairs',
+     tx:'2, 4, 6, 8 sont pairs — ils se divisent en 2 groupes égaux. 1, 3, 5, 7 sont impairs — il reste toujours 1 de trop!',
+     deep:[
+       {icon:'👫',ttl:'Former des paires',txt:'Mets 6 bonbons en paires : 3 paires parfaites. 6 est pair! Mets 5 bonbons en paires : 2 paires et 1 tout seul. 5 est impair!'},
+       {icon:'🌲',ttl:'Dans la nature',txt:'Les feuilles ont souvent un nombre pair de parties. Les fleurs ont souvent 5 pétales (impair) ou 6 (pair). La nature mélange les deux!'},
+       {icon:'🎲',ttl:'Le dé',txt:'Un dé a 6 faces : 1, 2, 3, 4, 5, 6. La moitié sont pairs (2, 4, 6) et l\'autre moitié impairs (1, 3, 5). Pile ou face en mieux!'},
+       {icon:'🏘',ttl:'Les numéros de maison',txt:'Dans une rue, les maisons d\'un côté ont des numéros pairs (2, 4, 6...) et de l\'autre côté des impairs (1, 3, 5...). Les facteurs savent toujours de quel côté chercher!'},
+     ]},
+    {s:'♾️',t:'les nombres n\'arrêtent jamais',
+     tx:'1, 2, 3... Les nombres continuent POUR TOUJOURS. Après 1 000 000 il y en a encore plein. Les nombres n\'ont pas de fin!',
+     deep:[
+       {icon:'🌌',ttl:'Toujours un de plus',txt:'Peu importe le plus grand nombre que tu connais, il y a toujours un nombre juste après. Après 100 vient 101. Après 1 000 000 vient 1 000 001. Ça ne finit jamais!'},
+       {icon:'⭐',ttl:'Les étoiles',txt:'Il y a environ 400 milliards d\'étoiles dans notre galaxie. C\'est 400 000 000 000. Et il y a des milliards de galaxies! Les grands nombres décrivent l\'univers.'},
+       {icon:'🔢',ttl:'Comment on dit les grands nombres?',txt:'100 = cent. 1 000 = mille. 1 000 000 = un million. 1 000 000 000 = un milliard. Chaque fois c\'est mille fois plus grand!'},
+       {icon:'🤯',ttl:'L\'infini',txt:'Le symbole ∞ veut dire "infini" — plus grand que tous les nombres. On ne peut pas compter jusqu\'à l\'infini, même si on essayait toute sa vie. C\'est le mystère des maths!'},
+     ]},
+  ],
+
+  // ─── 2e ANNÉE (7-8 ans) ───────────────────────────────────────────────
+  1: [
+    {s:'🔟',t:'les dizaines',
+     tx:'10, 20, 30, 40... Les dizaines c\'est compter par paquets de 10! 1 dizaine = 10 unités. 2 dizaines = 20. C\'est comme ranger des bonbons en sacs de 10.',
+     deep:[
+       {icon:'🍬',ttl:'Des sacs de bonbons',txt:'Tu as 23 bonbons. C\'est 2 sacs de 10 (= 20) et 3 bonbons tout seuls. 2 dizaines + 3 unités = 23. Les dizaines aident à compter vite!'},
+       {icon:'🖐',ttl:'Les doigts et les dizaines',txt:'2 mains = 10 doigts = 1 dizaine. 4 mains (toi + un ami) = 20 doigts = 2 dizaines. Tes mains sont une machine à dizaines!'},
+       {icon:'📦',ttl:'Ranger par 10',txt:'Les magasins rangent les choses par dizaines : 10 crayons dans une boîte, 10 boîtes dans un carton. Ça facilite le comptage!'},
+       {icon:'🎯',ttl:'Dizaines et Bitcoin',txt:'1 Bitcoin = 100 000 000 de satoshis. C\'est des dizaines de dizaines de dizaines... Les grands nombres sont juste des dizaines empilées!'},
+     ]},
+    {s:'➕',t:'additionner jusqu\'à 20',
+     tx:'9 + 8 = 17. 12 + 5 = 17. Quand les nombres dépassent 10, on peut passer par 10 pour calculer plus vite. C\'est le secret!',
+     deep:[
+       {icon:'🌉',ttl:'Passer par 10',txt:'8 + 7 = ? Pense : 8 + 2 = 10, il reste 5 à ajouter → 10 + 5 = 15. Tu es passé par 10 comme un pont! C\'est plus facile que de calculer 8 + 7 directement.'},
+       {icon:'🎒',ttl:'Dans ton sac d\'école',txt:'Tu as 9 crayons. Ton ami te donne 6 de plus. 9 + 1 = 10, il reste 5 → 10 + 5 = 15 crayons. Le sac est plein!'},
+       {icon:'🏀',ttl:'Les points au basketball',txt:'Tu marques 8 points, puis 9 autres. 8 + 2 = 10, + 7 = 17 points. Passer par 10 c\'est le truc des champions!'},
+       {icon:'⚡',ttl:'Tes sats grandissent',txt:'Tu as 12 sats, tu en gagnes 8. 12 + 8 = 20 sats! Chaque fois que tu joues, tes sats s\'accumulent. C\'est des additions qui s\'empilent!'},
+     ]},
+    {s:'➖',t:'soustraire jusqu\'à 20',
+     tx:'15 − 8 = 7. Pour calculer, tu peux partir de 8 et compter jusqu\'à 15. Ou partir de 15 et reculer. Les deux marchent!',
+     deep:[
+       {icon:'⬅️',ttl:'Reculer sur la ligne',txt:'15 − 8 : imagine que tu es sur la case 15 et tu recules 8 cases. 15 → 14 → 13 → 12 → 11 → 10 → 9 → 8 → 7. Tu arrives à 7!'},
+       {icon:'🔄',ttl:'La soustraction = addition à l\'envers',txt:'8 + ? = 15. Tu comptes de 8 à 15 : 9, 10, 11, 12, 13, 14, 15 — c\'est 7 pas. Donc 15 − 8 = 7. La soustraction c\'est trouver ce qui manque!'},
+       {icon:'🛒',ttl:'À l\'épicerie',txt:'Tu as 20$ pour acheter un jouet à 13$. 20 − 13 = ? Tu donnes 20$, tu reçois 7$ de change. La soustraction calcule le change!'},
+       {icon:'🧩',ttl:'Les pièces manquantes',txt:'Un puzzle a 20 pièces. Tu en as mis 14. 20 − 14 = 6 pièces encore à placer. La soustraction compte ce qui reste!'},
+     ]},
+    {s:'🔄',t:'la famille des faits',
+     tx:'3 + 5 = 8 et 5 + 3 = 8. 8 − 3 = 5 et 8 − 5 = 3. Ces 4 opérations forment une famille! Apprendre l\'une aide pour les autres.',
+     deep:[
+       {icon:'👨‍👩‍👧‍👦',ttl:'Une famille de 4',txt:'3 + 5 = 8. 5 + 3 = 8. 8 − 3 = 5. 8 − 5 = 3. Quatre opérations, 3 mêmes chiffres. Si tu sais l\'une, tu sais les 4!'},
+       {icon:'🧱',ttl:'Les briques Lego',txt:'3 briques rouges + 5 bleues = 8 en tout. Si tu enlèves les 5 bleues, il reste 3 rouges. Les maths décrivent ce que tu vois!'},
+       {icon:'🎪',ttl:'Le truc pour retenir',txt:'Quand tu apprends 7 + 6 = 13, tu sais automatiquement : 6 + 7 = 13, 13 − 6 = 7, 13 − 7 = 6. Un seul apprentissage = 4 faits gratuits!'},
+       {icon:'🏗',ttl:'La base de la multiplication',txt:'Plus tard, les tables de multiplication fonctionnent pareil : 3 × 4 = 12 et 4 × 3 = 12 et 12 ÷ 3 = 4 et 12 ÷ 4 = 3. La même famille!'},
+     ]},
+    {s:'📏',t:'mesurer c\'est comparer',
+     tx:'Une règle mesure en centimètres. 10 cm = 1 décimètre. Mesurer c\'est comparer avec une unité. Sans unité, pas de mesure!',
+     deep:[
+       {icon:'📐',ttl:'C\'est quoi mesurer?',txt:'Mesurer c\'est comparer. "Cette table a 80 cm" veut dire : la table est 80 fois plus longue qu\'1 centimètre. Tu compares!'},
+       {icon:'🦕',ttl:'Les dinosaures',txt:'Le T-Rex mesurait environ 12 mètres. Un éléphant mesure 3 mètres. Le T-Rex était 4 fois plus long! Les mesures permettent de comparer des choses qu\'on voit pas ensemble.'},
+       {icon:'🏠',ttl:'Ta chambre',txt:'Si ta chambre fait 3 mètres sur 4 mètres, son périmètre est 3+4+3+4 = 14 mètres. Les constructeurs font des maths comme ça pour chaque pièce!'},
+       {icon:'🌍',ttl:'Les unités dans le monde',txt:'Au Canada on utilise les mètres. Aux USA, ils utilisent les pieds et les pouces. 1 pied = 30.48 cm. Même réalité, unités différentes. C\'est pour ça qu\'on doit toujours préciser l\'unité!'},
+     ]},
+    {s:'⏰',t:'le temps c\'est des maths',
+     tx:'60 secondes = 1 minute. 60 minutes = 1 heure. 24 heures = 1 jour. Le temps fonctionne avec des nombres — comme tout le reste!',
+     deep:[
+       {icon:'⌚',ttl:'Lire l\'heure',txt:'Quand la petite aiguille est sur 3 et la grande sur 12, il est 3h00. Quand la grande est sur 6, il est 3h30. La grande aiguille fait le tour en 60 minutes!'},
+       {icon:'📅',ttl:'Les jours et les semaines',txt:'7 jours = 1 semaine. 4 semaines ≈ 1 mois. 12 mois = 1 an. 365 jours = 1 an. Les calendriers sont remplis de maths!'},
+       {icon:'🎮',ttl:'Le temps de jeu',txt:'Si tu joues 30 minutes le matin et 30 minutes le soir, tu as joué 30 + 30 = 60 minutes = 1 heure. Les additions s\'appliquent au temps!'},
+       {icon:'⚡',ttl:'250 questions par jour',txt:'Dans MathBitcoin, tu peux faire 250 questions par jour. Si tu fais 5 questions en 2 minutes, ça prend 250 ÷ 5 × 2 = 100 minutes. Soit presque 2 heures! Un peu à la fois c\'est mieux.'},
+     ]},
+    {s:'💰',t:'l\'argent c\'est des maths',
+     tx:'1$ = 100 sous. 25¢ = 1 quart. 2 quarts = 50¢. Quand tu achètes quelque chose, tu fais des additions et des soustractions!',
+     deep:[
+       {icon:'🪙',ttl:'Les pièces de monnaie',txt:'1¢ (penny), 5¢ (nickel), 10¢ (dime), 25¢ (quarter). Pour faire 50¢, tu peux utiliser 2 quarters, ou 5 dimes, ou 50 pennies. Plusieurs façons d\'arriver au même montant!'},
+       {icon:'🛍',ttl:'Faire des courses',txt:'Une gomme coûte 15¢. Tu as 25¢. 25 − 15 = 10¢ de change. Chaque achat est une soustraction!'},
+       {icon:'🐖',ttl:'La tirelire',txt:'Tu mets 5¢ chaque jour dans ta tirelire. Après 7 jours : 5 + 5 + 5 + 5 + 5 + 5 + 5 = 35¢. C\'est du comptage par bonds de 5 — et la base de l\'épargne!'},
+       {icon:'₿',ttl:'Bitcoin et les sous',txt:'1 Bitcoin = 100 000 000 de satoshis. C\'est comme dire 1$ = 100 sous, mais avec beaucoup plus de zéros! Les satoshis sont les "sous" du Bitcoin.'},
+     ]},
+    {s:'📊',t:'les graphiques',
+     tx:'Un graphique montre des chiffres en image. Un diagramme à barres compare des quantités. C\'est des maths qu\'on voit!',
+     deep:[
+       {icon:'📈',ttl:'C\'est quoi un graphique?',txt:'Si 5 élèves aiment les chiens, 8 aiment les chats et 3 aiment les lapins — un diagramme fait 3 barres. La plus haute barre montre le favori : les chats!'},
+       {icon:'🌡',ttl:'La météo',txt:'Les bulletins météo montrent des graphiques de température. Lundi 10°, Mardi 12°, Mercredi 8°... Les pics et les creux montrent les jours chauds et froids d\'un seul coup d\'œil!'},
+       {icon:'🎮',ttl:'Ton score dans le jeu',txt:'Chaque fois que tu joues, ton score monte. Si tu faisais un graphique de tes sats chaque semaine, tu verrais une ligne qui monte! C\'est comme ça qu\'on suit ses progrès.'},
+       {icon:'₿',ttl:'Le graphique de Bitcoin',txt:'Le prix de Bitcoin monte et descend chaque jour. Les investisseurs regardent des graphiques pour décider. Comprendre les graphiques c\'est comprendre l\'argent!'},
+     ]},
+    {s:'🔃',t:'compter par 5',
+     tx:'5, 10, 15, 20, 25... Compter par 5 c\'est super utile! Les pièces de 5 sous, les doigts d\'une main, les minutes sur une horloge.',
+     deep:[
+       {icon:'🖐',ttl:'Une main à la fois',txt:'5 doigts par main. 2 mains = 10. 3 mains = 15 (toi + ami pour 1 main). Chaque main ajoutée, tu comptes +5!'},
+       {icon:'⌚',ttl:'L\'horloge',txt:'La grande aiguille saute par 5 minutes : 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60. C\'est pour ça qu\'on dit "et quart" (15 min), "et demie" (30 min)!'},
+       {icon:'🎯',ttl:'Score au bowling',txt:'Au bowling, les quilles valent 1 point chacune. Si tu renverses 5 quilles, tu marques 5. Compter par 5 aide à additionner vite!'},
+       {icon:'💡',ttl:'La base des tables',txt:'La table de 5 sera facile plus tard : 5, 10, 15, 20, 25, 30, 35, 40, 45, 50. Tu la connais déjà! Compter par 5 = table de × 5.'},
+     ]},
+    {s:'↔️',t:'la droite des nombres',
+     tx:'−−−0−1−2−3−4−5−−− Les nombres sont sur une ligne! Plus tu vas à droite, plus c\'est grand. La droite des nombres aide à comprendre l\'ordre.',
+     deep:[
+       {icon:'👉',ttl:'Aller à droite = ajouter',txt:'Sur la droite des nombres, 4 + 3 = tu pars de 4 et tu sautes 3 cases vers la droite → tu arrives sur 7. L\'addition va à droite!'},
+       {icon:'👈',ttl:'Aller à gauche = soustraire',txt:'7 − 3 = tu pars de 7 et tu recules 3 cases vers la gauche → tu arrives sur 4. La soustraction va à gauche!'},
+       {icon:'🏁',ttl:'Les courses',txt:'Dans une course de 20 mètres, si tu en as couru 13, il te reste 20 − 13 = 7 mètres. La droite des nombres c\'est comme une piste!'},
+       {icon:'🧊',ttl:'L\'hiver et les négatifs',txt:'En hiver, il peut faire −10 degrés. C\'est 10 cases à GAUCHE du 0 sur la droite des nombres. Tu verras ça plus tard en secondaire — mais les négatifs existent!'},
+     ]},
+    {s:'🌓',t:'la moitié et le double',
+     tx:'La moitié de 10 = 5. Le double de 5 = 10. Moitié et double sont opposés — comme addition et soustraction! Connaître l\'un donne l\'autre.',
+     deep:[
+       {icon:'🍕',ttl:'Partager une pizza',txt:'Une pizza coupée en 2 parts égales — chaque part est la moitié. 8 morceaux ÷ 2 = 4 par personne. Partager équitablement c\'est trouver la moitié!'},
+       {icon:'👬',ttl:'Le double c\'est x2',txt:'Tu as 6 cartes. Ton ami en a le double. Il en a 6 × 2 = 12. Le double c\'est additionner le même nombre deux fois : 6 + 6 = 12.'},
+       {icon:'💪',ttl:'Grandir c\'est doubler',txt:'À 1 an, un bébé pèse environ le double de sa naissance. Un arbre double souvent de taille en quelques années. La croissance aime les doubles!'},
+       {icon:'⚡',ttl:'Les sats doublent',txt:'Si tu as 10 sats et tu les doubles, tu en as 20. Si tu les doubles encore, 40! C\'est ça la croissance exponentielle — doubler encore et encore. Bitcoin fonctionne comme ça sur le long terme.'},
+     ]},
+  ],
+  2: null, 3: null, 4: null, 5: null, 6: null, 7: null,
+};
+
+// Fallback universel pour les niveaux sans faits spécifiques
+const FACTS_UNIVERSAL=[
+  {s:'π',t:'le nombre π',
+   tx:'Pi = 3.14159... Le rapport entre la circonférence d\'un cercle et son diamètre. Toujours le même, partout dans l\'univers.',
+   deep:[
+     {icon:'🔵',ttl:'C\'est quoi π?',txt:'Le périmètre d\'un cercle divisé par son diamètre donne toujours π, peu importe la taille du cercle.'},
+     {icon:'📐',ttl:'La formule',txt:'Circonférence = 2πr. Aire = πr².'},
+     {icon:'🌌',ttl:'Le mystère',txt:'Pi est infini et ne se répète jamais : 3.14159265358979...'},
+     {icon:'🧠',ttl:'Anecdote',txt:'L\'Indiana a tenté de voter π = 3.2 en 1897. Les mathématiciens ont bloqué la loi!'},
+   ]},
+  {s:'φ',t:'le nombre d\'or',
+   tx:'Phi = 1.618... Gouverne les spirales des coquillages, les fleurs de tournesol, et la croissance des galaxies.',
+   deep:[
+     {icon:'🐚',ttl:'C\'est quoi φ?',txt:'Phi = 1.618... Un rapport naturel qui apparaît partout dans la nature.'},
+     {icon:'🌻',ttl:'Les tournesols',txt:'34 spirales dans un sens, 55 dans l\'autre. Deux nombres de Fibonacci. Leur rapport ≈ φ.'},
+     {icon:'🏛',ttl:'Dans l\'art',txt:'Le Parthénon, Léonard de Vinci — tous utilisent des proportions proches de φ.'},
+     {icon:'📈',ttl:'Et Bitcoin',txt:'Les traders utilisent les niveaux de Fibonacci basés sur φ pour analyser les prix.'},
+   ]},
 ];
 
-// No-repeat shuffle queue
-let _factQueue=[];
-function getNextFact(){
-  if(_factQueue.length===0){
-    _factQueue=FACTS.map((_,i)=>i);
-    for(let i=_factQueue.length-1;i>0;i--){const j=rand(0,i);[_factQueue[i],_factQueue[j]]=[_factQueue[j],_factQueue[i]];}
-  }
-  return FACTS[_factQueue.pop()];
+function getFactsForLevel(level){
+  return FACTS_BY_LEVEL[level] || FACTS_UNIVERSAL;
 }
-
+// Alias pour compatibilité
+const FACTS = FACTS_UNIVERSAL;
 // ══════════ SECRET TABLETS ══════════
 const SECRETS=[
   {s:'⬡',t:'Le Tableau de Fibonacci',tx:'1, 1, 2, 3, 5, 8, 13, 21... Chaque nombre est la somme des deux précédents. Ce pattern apparaît dans les fleurs, les coquillages, les pinecônes — et dans le génome humain.'},
@@ -516,93 +1015,395 @@ let G={sats:0,streak:0,level:0,qCount:0,currentAns:0,locked:false,
        dailyQ:0,dailyCorrect:0,isDailyActive:false,factEvery:5};
 
 function getLvl(){return LEVELS[Math.min(G.level,LEVELS.length-1)];}
+
 function rand(a,b){return Math.floor(Math.random()*(b-a+1))+a;}
 
 function makeQ(){
-  const l=getLvl();const op=l.ops[rand(0,l.ops.length-1)];let a,b,ans;
-  if(op==='+'){a=rand(1,l.max);b=rand(1,l.max);ans=a+b;}
-  else if(op==='-'){a=rand(5,l.max+5);b=rand(1,a);ans=a-b;}
-  else if(op==='×'){a=rand(2,l.max);b=rand(2,Math.min(l.max,12));ans=a*b;}
-  else{b=rand(2,l.max);ans=rand(1,l.max);a=b*ans;}
-  return{eq:`${a} ${op} ${b} = ?`,ans,op};
+  const l=getLvl();
+  let eq,ans,domain;
+
+  if(l.type==='basic'){
+    const op=['+','-'][rand(0,1)];
+    let a,b;
+    if(op==='+'){a=rand(1,l.max);b=rand(1,l.max);ans=a+b;}
+    else{a=rand(2,l.max);b=rand(1,a-1);ans=a-b;} // b < a donc résultat toujours >= 1
+    eq=`${a} ${op} ${b} = ?`;domain=op==='+' ? 'addition' : 'soustraction';
+
+  }else if(l.type==='tables'){
+    // Multiplication ou division avec les tables définies
+    const useDiv=rand(0,2)===0; // 1 chance sur 3 de division
+    const t=l.tables[rand(0,l.tables.length-1)];
+    const n=rand(1,10);
+    if(useDiv){
+      ans=n;eq=`${t*n} ÷ ${t} = ?`;domain='division';
+    }else{
+      ans=t*n;eq=`${t} × ${n} = ?`;domain='multiplication';
+    }
+
+  }else if(l.type==='missing'){
+    // Nombre manquant : 3 × ? = 24
+    const ops=['+','-','×','÷'];
+    const op=ops[rand(0,3)];
+    const t=l.tables[rand(0,l.tables.length-1)];
+    const n=rand(1,10);
+    const posQ=rand(0,1); // 0=gauche, 1=droite
+    if(op==='×'){
+      const prod=t*n;
+      if(posQ===0){ans=t;eq=`? × ${n} = ${prod}`;}
+      else{ans=n;eq=`${t} × ? = ${prod}`;}
+    }else if(op==='÷'){
+      const prod=t*n;
+      ans=n;eq=`${prod} ÷ ${t} = ?`; // simplify: just division
+    }else if(op==='+'){
+      const a=rand(1,l.max/2);const b=rand(1,l.max/2);
+      if(posQ===0){ans=a;eq=`? + ${b} = ${a+b}`;}
+      else{ans=b;eq=`${a} + ? = ${a+b}`;}
+    }else{
+      const a=rand(10,l.max);const b=rand(1,a-1);
+      if(posQ===0){ans=a;eq=`? - ${b} = ${a-b}`;}
+      else{ans=b;eq=`${a} - ? = ${a-b}`;}
+    }
+    domain='nombre manquant';
+
+  }else if(l.type==='percent'){
+    // Pourcentages simples : 25% de 80 = ?
+    const pcts=[10,20,25,50,75];
+    const pct=pcts[rand(0,pcts.length-1)];
+    const bases=[20,40,60,80,100,120,200];
+    const base=bases[rand(0,bases.length-1)];
+    ans=Math.round(pct/100*base);
+    eq=`${pct}% de ${base} = ?`;
+    domain='pourcentage';
+
+  }else if(l.type==='integers'){
+    // Entiers négatifs : -5 + 8 = ?
+    const ops2=['+','-','×'];
+    const op=ops2[rand(0,2)];
+    let a,b;
+    if(op==='+'){
+      a=rand(-l.max,l.max);b=rand(-l.max,l.max);ans=a+b;
+      eq=`${a} + (${b}) = ?`;
+    }else if(op==='-'){
+      a=rand(-l.max,l.max);b=rand(-l.max,l.max);ans=a-b;
+      eq=`${a} − ${b} = ?`;
+    }else{
+      a=rand(-10,10);b=rand(-10,10);ans=a*b;
+      eq=`${a} × ${b} = ?`;
+    }
+    domain='entiers';
+
+  }else if(l.type==='algebra'){
+    // Équations simples : 3x + 2 = 11  →  x = ?
+    const coef=rand(2,l.max);
+    const x=rand(1,10);
+    const c=rand(1,20);
+    const side=rand(0,1);
+    if(side===0){
+      // ax + b = c  → x
+      const total=coef*x+c;
+      eq=`${coef}x + ${c} = ${total}`;
+      ans=x;
+    }else{
+      // ax - b = c → x
+      const total=coef*x-c;
+      eq=`${coef}x − ${c} = ${total}`;
+      ans=x;
+    }
+    domain='algèbre';
+
+  }else if(l.type==='linear'){
+    // Sec 3 — Fonctions linéaires : y = mx + b, trouver y ou x
+    // + théorème de Pythagore simplifié
+    const mode=rand(0,2);
+    if(mode===0){
+      // y = mx + b → trouver y
+      const m=rand(1,6);const b=rand(0,10);const x=rand(1,8);
+      ans=m*x+b;
+      eq=`y = ${m}x + ${b}, x=${x} → y = ?`;
+      domain='fonctions';
+    }else if(mode===1){
+      // mx + b = c → trouver x
+      const m=rand(2,8);const b=rand(1,10);const x=rand(1,10);
+      const c=m*x+b;
+      ans=x;
+      eq=`${m}x + ${b} = ${c} → x = ?`;
+      domain='algèbre';
+    }else{
+      // Pythagore : a²+b²=c², triplets courants
+      const triplets=[[3,4,5],[5,12,13],[6,8,10],[8,15,17],[9,12,15]];
+      const t=triplets[rand(0,triplets.length-1)];
+      const hide=rand(0,2);
+      if(hide===0){ans=t[0];eq=`?² + ${t[1]}² = ${t[2]}²`;}
+      else if(hide===1){ans=t[1];eq=`${t[0]}² + ?² = ${t[2]}²`;}
+      else{ans=t[2];eq=`${t[0]}² + ${t[1]}² = ?²`;}
+      domain='Pythagore';
+    }
+
+  }else if(l.type==='quadratic'){
+    // Sec 4 — Quadratiques simplifiées + trig de base
+    const mode=rand(0,2);
+    if(mode===0){
+      // x² = n → trouver x (racines carrées parfaites)
+      const squares=[1,4,9,16,25,36,49,64,81,100,121,144];
+      const sq=squares[rand(0,squares.length-1)];
+      ans=Math.sqrt(sq);
+      eq=`x² = ${sq} → x = ?`;
+      domain='racines carrées';
+    }else if(mode===1){
+      // Discriminant simplifié : ax²+bx+c=0, une racine entière
+      const r1=rand(1,8);const r2=rand(1,8);
+      // (x-r1)(x+r2)=0 → x=r1 ou x=-r2, on demande la positive
+      const b2=r2-r1;const c2=-(r1*r2);
+      ans=r1;
+      eq=`x² ${b2>=0?'+':''} ${b2}x ${c2>=0?'+':''} ${c2} = 0 → x > 0 = ?`;
+      domain='quadratique';
+    }else{
+      // Trig de base — valeurs remarquables
+      const trigQ=[
+        {q:'sin(30°) × 100 = ?', a:50},
+        {q:'cos(60°) × 100 = ?', a:50},
+        {q:'sin(90°) × 10 = ?',  a:10},
+        {q:'cos(0°) × 15 = ?',   a:15},
+        {q:'tan(45°) × 8 = ?',   a:8},
+        {q:'sin(45°) ≈ ?/100',   a:71},
+        {q:'cos(30°) ≈ ?/100',   a:87},
+      ];
+      const tq=trigQ[rand(0,trigQ.length-1)];
+      eq=tq.q;ans=tq.a;
+      domain='trigonométrie';
+    }
+
+  }else if(l.type==='advanced'){
+    // Sec 5 — Logarithmes + suites + probabilités
+    const mode=rand(0,2);
+    if(mode===0){
+      // Logarithmes : log₂(8) = ? log₃(27) = ?
+      const logQ=[
+        {q:'log₂(8) = ?',   a:3},
+        {q:'log₂(16) = ?',  a:4},
+        {q:'log₂(32) = ?',  a:5},
+        {q:'log₃(9) = ?',   a:2},
+        {q:'log₃(27) = ?',  a:3},
+        {q:'log₃(81) = ?',  a:4},
+        {q:'log₅(25) = ?',  a:2},
+        {q:'log₅(125) = ?', a:3},
+        {q:'log₁₀(100) = ?',a:2},
+        {q:'log₁₀(1000) = ?',a:3},
+        {q:'log₂(64) = ?',  a:6},
+        {q:'log₄(16) = ?',  a:2},
+      ];
+      const lq=logQ[rand(0,logQ.length-1)];
+      eq=lq.q;ans=lq.a;
+      domain='logarithmes';
+    }else if(mode===1){
+      // Suites arithmétiques : terme manquant
+      const d2=rand(2,8);const a0=rand(1,10);const n=rand(3,7);
+      ans=a0+(n-1)*d2;
+      eq=`Suite +${d2}: ${a0}, ${a0+d2}, ${a0+2*d2}, ... → terme ${n} = ?`;
+      domain='suites';
+    }else{
+      // Probabilités simples
+      const probQ=[
+        {q:'P(pile) × 100 = ?%',      a:50},
+        {q:'Dé: P(≤3) × 6 = ?/6',    a:3},
+        {q:'Cartes: P(as) × 52 = ?',  a:4},
+        {q:'P(rouge) × 52 = ?',       a:26},
+        {q:'2 pièces: P(2 piles) × 100 = ?%', a:25},
+        {q:'Dé: P(pair) × 6 = ?',     a:3},
+        {q:'P(≥5) sur un dé × 6 = ?', a:2},
+      ];
+      const pq=probQ[rand(0,probQ.length-1)];
+      eq=pq.q;ans=pq.a;
+      domain='probabilités';
+    }
+  }
+
+  return{eq,ans,domain};
 }
-function wrongOpts(c){const s=new Set();while(s.size<3){const r=Math.max(6,Math.floor(Math.abs(c)*0.35));let w=c+rand(-r,r);if(w!==c&&w>=0&&!s.has(w))s.add(w);}return[...s];}
+
+function wrongOpts(c, allowNeg=false){
+  const s=new Set();
+  const spread=Math.max(2,Math.floor(Math.abs(c)*0.25+2));
+  let tries=0;
+  while(s.size<3&&tries<80){
+    tries++;
+    let w;
+    const roll=rand(0,2);
+    if(roll===0) w=c+rand(1,spread)*(rand(0,1)?1:-1);
+    else if(roll===1) w=c+[-1,1,2,-2,3,-3][rand(0,5)];
+    else w=c+rand(-spread,spread);
+    // Jamais négatif sauf si niveau le permet (integers/algebra)
+    if(!allowNeg && w<0) continue;
+    if(w===c||s.has(w)) continue;
+    s.add(w);
+  }
+  return[...s];
+}
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=rand(0,i);[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+// ══════════ CONSTANTS ══════════
+const CYCLE_SIZE   = 5;    // questions par cycle
+const SATS_CYCLE   = 5;    // sats par cycle réussi
+const DAILY_MAX    = 250;  // questions max par jour
+const ANNUAL_MAX   = 91250;// questions par année scolaire (250 × 365)
 
 // ══════════ START GAME ══════════
 function startGame(mode){
   const d=getSave();
-  G={sats:d.sats,streak:0,level:d.level,qCount:0,currentAns:0,locked:false,
+  G={sats:d.sats,streak:0,level:d.level,
+     levelProgress:d.levelProgress||0,
+     cycleCorrect:0,    // bonnes réponses dans le cycle actuel (0→5)
+     qCount:0,currentAns:0,locked:false,
      mode,timerSec:30,timerMax:30,timerInt:null,
+     dailyQCount:d.dailyQCount||0,
      dailyQ:0,dailyCorrect:0,isDailyActive:false,factEvery:5};
-  const tn=document.getElementById('timerNum');const tf=document.getElementById('timerFill');
-  if(mode==='speed'){tn.style.display='block';tf.style.background='var(--gold)';}
-  else{tn.style.display='none';tf.style.width='100%';tf.style.background='var(--violet)';}
-  startWormhole(()=>{show('s-game');updateHUD();nextQ();});
+
+  const tn=document.getElementById('timerNum');
+  const tf=document.getElementById('timerFill');
+  if(mode==='speed'){
+    tn.style.display='block';
+    tf.style.background='var(--gold)';
+  } else {
+    tn.style.display='none';
+    tf.style.width='100%';
+    tf.style.background='var(--violet)';
+  }
+
+  startWormhole(()=>{show('s-game');updateHUD();updateCreature();nextQ();});
 }
 
 // ══════════ TIMER ══════════
 function startTimer(){
-  clearInterval(G.timerInt);G.timerSec=G.timerMax;
-  const tf=document.getElementById('timerFill');const tn=document.getElementById('timerNum');
-  tf.style.transition='none';tf.style.width='100%';tf.style.background='var(--gold)';
+  clearInterval(G.timerInt);
+  G.timerSec=G.timerMax;
+  const tf=document.getElementById('timerFill');
+  const tn=document.getElementById('timerNum');
+  tf.style.transition='none';tf.style.width='100%';
+  tf.style.background='var(--gold)';
+
   G.timerInt=setInterval(()=>{
-    G.timerSec-=0.1;if(G.timerSec<=0){clearInterval(G.timerInt);timeUp();return;}
+    G.timerSec-=0.1;
+    if(G.timerSec<=0){clearInterval(G.timerInt);timeUp();return;}
     const pct=(G.timerSec/G.timerMax)*100;
-    tf.style.transition='width 0.1s linear';tf.style.width=pct+'%';
-    if(G.timerSec<10){tf.style.background='var(--red)';tn.classList.add('warn');if(Math.round(G.timerSec*10)%10===0)sndTick();}
+    tf.style.transition='width 0.1s linear';
+    tf.style.width=pct+'%';
+    if(G.timerSec<10){
+      tf.style.background='var(--red)';
+      tn.classList.add('warn');
+      if(Math.round(G.timerSec*10)%10===0)sndTick();
+    }
     tn.textContent=Math.ceil(G.timerSec);
   },100);
 }
 function timeUp(){
-  G.locked=true;document.querySelectorAll('.ans').forEach(b=>{b.style.pointerEvents='none';});
-  document.getElementById('uR1').classList.add('no');sndWrong();G.streak=0;updateHUD();
+  G.locked=true;
+  document.querySelectorAll('.ans').forEach(b=>{b.style.pointerEvents='none';});
+  document.getElementById('uR1').classList.add('no');
+  sndWrong();
+  G.streak=0;updateHUD();
   setTimeout(()=>{G.locked=false;nextQ();},900);
 }
 
 // ══════════ NEXT QUESTION ══════════
 function nextQ(){
-  if(G.locked)return;const l=getLvl();const q=makeQ();G.currentAns=q.ans;G.locked=false;
-  document.getElementById('pDomain').textContent=DOMAINS[q.op]||'calcul';
-  const eq=document.getElementById('pEq');eq.classList.add('fade');
+  if(G.locked)return;
+  const l=getLvl();
+  const q=makeQ();
+  G.currentAns=q.ans;G.locked=false;
+
+  document.getElementById('pDomain').textContent=q.domain||'calcul';
+  const eq=document.getElementById('pEq');
+  eq.classList.add('fade');
   setTimeout(()=>{eq.textContent=q.eq;eq.classList.remove('fade');},180);
+
   const grid=document.getElementById('ansGrid');grid.innerHTML='';
-  shuffle([q.ans,...wrongOpts(q.ans)]).forEach(o=>{
-    const b=document.createElement('button');b.className='ans';b.textContent=o;b.onclick=()=>answer(b,o);grid.appendChild(b);
+  const allowNeg = ['integers','algebra','linear','quadratic','advanced'].includes(getLvl().type);
+  shuffle([q.ans,...wrongOpts(q.ans, allowNeg)]).forEach(o=>{
+    const b=document.createElement('button');
+    b.className='ans';b.textContent=o;b.onclick=()=>answer(b,o);
+    grid.appendChild(b);
   });
-  document.getElementById('progFill').style.width=((G.qCount%l.qpl)/l.qpl*100)+'%';
+  const pct=Math.min(100,(G.dailyQCount/DAILY_MAX)*100);
+  document.getElementById('progFill').style.width=pct+'%';
+
   if(G.mode==='speed')startTimer();
 }
 
 // ══════════ ANSWER ══════════
 function answer(btn,chosen){
-  if(G.locked)return;G.locked=true;clearInterval(G.timerInt);
-  document.querySelectorAll('.ans').forEach(b=>b.style.pointerEvents='none');G.qCount++;
+  if(G.locked)return;
+  G.locked=true;
+  clearInterval(G.timerInt);
+  document.querySelectorAll('.ans').forEach(b=>b.style.pointerEvents='none');
+
+  // Daily tracking
   if(G.isDailyActive){G.dailyQ++;if(chosen===G.currentAns)G.dailyCorrect++;}
 
   if(chosen===G.currentAns){
-    btn.classList.add('ok');document.getElementById('uR1').classList.add('ok');
+    btn.classList.add('ok');
+    document.getElementById('uR1').classList.add('ok');
     setTimeout(()=>document.getElementById('uR1').classList.remove('ok'),800);
-    sndCorrect();G.streak++;
-    const bonus=Math.floor(1+G.streak*0.6+G.level*0.4);G.sats+=bonus;
+    sndCorrect();
+    // Confetti + creature bounce
+    const rc=btn.getBoundingClientRect();
+    burstConfetti(rc.left+rc.width/2, rc.top+rc.height/2, G.streak>2?50:32);
+    burstStars(rc.left+rc.width/2, rc.top+rc.height/2);
+    creatureBounce();
+    G.streak++;
+    G.qCount++;
+    G.cycleCorrect++;
+    G.levelProgress++;
+    G.dailyQCount++;
+
+    const bonus=Math.floor(1+G.streak*0.4+G.level*0.3);
+    G.sats+=bonus;
+
     showReward(btn,'+'+bonus+' ⚡');
-    patchSave({sats:G.sats,level:G.level,totalQ:getSave().totalQ+1});
-    updateHUD();renderProfile();
+    patchSave({sats:G.sats,level:G.level,levelProgress:G.levelProgress,
+               totalQ:getSave().totalQ+1,
+               dailyQCount:G.dailyQCount,
+               dailyQDate:new Date().toDateString()});
+    updateHUD();
+    renderProfile();
+
+    // ── Limite journalière atteinte ──
+    if(G.dailyQCount>=DAILY_MAX){
+      clearInterval(G.timerInt);
+      setTimeout(()=>showDailyLimit(),700);return;
+    }
+
+    // ── Fin d'un cycle de 5 bonnes réponses ──
+    if(G.cycleCorrect>=CYCLE_SIZE){
+      clearInterval(G.timerInt);
+      setTimeout(()=>showBreak(),700);return;
+    }
+
+    // ── Level up annuel (91 250 questions) ──
+    if(G.levelProgress>=ANNUAL_MAX&&G.level<LEVELS.length-1){
+      setTimeout(()=>doLvlUp(),700);return;
+    }
+
+    // ── Secret unlock toutes les 25 bonnes réponses ──
     const d=getSave();
     if(d.totalQ>0&&d.totalQ%25===0){
       const idx=Math.floor(Math.random()*SECRETS.length);
-      if(!d.secretsFound.includes(idx)){patchSave({secretsFound:[...d.secretsFound,idx]});setTimeout(()=>triggerSecret(idx),600);return;}
+      if(!d.secretsFound.includes(idx)){
+        patchSave({secretsFound:[...d.secretsFound,idx]});
+        setTimeout(()=>triggerSecret(idx),600);return;
+      }
     }
-    if(G.isDailyActive&&G.dailyQ>=10){setTimeout(()=>finishDaily(),600);return;}
-    if(G.qCount>0&&G.qCount%getLvl().qpl===0&&G.level<LEVELS.length-1){setTimeout(()=>doLvlUp(),600);return;}
-    if(G.qCount%G.factEvery===0){setTimeout(()=>showFact(),600);return;}
+
     setTimeout(()=>{G.locked=false;nextQ();},700);
+
   } else {
-    btn.classList.add('no');document.getElementById('uR1').classList.add('no');
+    btn.classList.add('no');
+    document.getElementById('uR1').classList.add('no');
     setTimeout(()=>document.getElementById('uR1').classList.remove('no'),600);
     sndWrong();
+    creatureShake();
     document.querySelectorAll('.ans').forEach(b=>{if(parseInt(b.textContent)===G.currentAns)b.classList.add('reveal');});
-    G.streak=0;updateHUD();patchSave({totalQ:getSave().totalQ+1});
+    G.streak=0;updateHUD();
+    patchSave({totalQ:getSave().totalQ+1});
     setTimeout(()=>{G.locked=false;nextQ();},1100);
   }
 }
@@ -610,9 +1411,11 @@ function answer(btn,chosen){
 function updateHUD(){
   document.getElementById('satDisp').textContent=G.sats;
   document.getElementById('lvlDisp').textContent=G.level+1;
-  document.getElementById('lvlNameDisp').textContent=getLvl().name;
+  const l=getLvl();
+  document.getElementById('lvlNameDisp').textContent=l.grade||l.name;
   const sb=document.getElementById('streakDisp');
-  if(G.streak>1){sb.textContent=G.streak+'× 🔥';sb.classList.add('on');}else sb.classList.remove('on');
+  if(G.streak>1){sb.textContent=G.streak+'× 🔥';sb.classList.add('on');}
+  else sb.classList.remove('on');
 }
 
 function showReward(btn,txt){
@@ -622,84 +1425,202 @@ function showReward(btn,txt){
   document.body.appendChild(r);setTimeout(()=>r.remove(),1200);
 }
 
-// ══════════ FACT — avec "en savoir plus" via Claude ══════════
-let _currentFactTopic='';
+// ══════════ CLAUDE API — EXPLICATION INFINIE ══════════
+let G_aiFact=null; // dernier fait généré par l'IA
 
-function showFact(){
-  const f=getNextFact();
-  _currentFactTopic=f.t;
-  document.getElementById('fSym').textContent=f.s;
-  document.getElementById('fTtl').textContent=f.t;
-  document.getElementById('fTxt').textContent=f.tx;
-  // Reset l'expand
-  const expand=document.getElementById('factExpand');
-  expand.style.display='none';
-  expand.innerHTML='';
-  const btn=document.getElementById('factMoreBtn');
-  btn.textContent='✦ en savoir plus';
-  btn.removeAttribute('disabled');
-  btn.onclick=loadMoreFact;
-  showOv('factOverlay');
-}
+const AGE_MAP={
+  0:'6-7 ans (1re année)',1:'7-8 ans (2e année)',2:'8-9 ans (3e année)',
+  3:'9-10 ans (4e année)',4:'10-11 ans (5e année)',5:'11-12 ans (6e année)',
+  6:'12-13 ans (Secondaire 1)',7:'13-14 ans (Secondaire 2)',
+  8:'14-15 ans (Secondaire 3)',9:'15-16 ans (Secondaire 4)',
+  10:'16-17 ans (Secondaire 5)'
+};
+const TOPIC_MAP={
+  basic:'addition et soustraction de petits nombres',
+  tables:'tables de multiplication et division',
+  missing:'trouver le nombre manquant dans une équation',
+  percent:'pourcentages et fractions simples',
+  integers:'entiers positifs et négatifs',
+  algebra:'algèbre et équations du premier degré',
+  linear:'fonctions linéaires et théorème de Pythagore',
+  quadratic:'fonctions quadratiques et trigonométrie de base',
+  advanced:'logarithmes, suites et probabilités'
+};
 
-async function loadMoreFact(){
-  const btn=document.getElementById('factMoreBtn');
-  const expand=document.getElementById('factExpand');
-  btn.setAttribute('disabled','');
-  btn.textContent='· · ·';
-  expand.style.display='block';
-  expand.innerHTML='<p class="exp-loading">· · ·</p>';
+async function generateAIFact(){
+  const l=getLvl();
+  const age=AGE_MAP[G.level]||'enfant';
+  const topic=TOPIC_MAP[l.type]||'mathématiques';
+
+  const prompt=`Tu es un éducateur mathématique passionné qui s'adresse à un enfant de ${age}.
+L'enfant vient de répondre correctement à 5 questions sur le thème : ${topic}.
+
+Génère une explication mathématique surprenante, fun et adaptée à cet âge.
+IMPORTANT: Le langage doit être simple et adapté à ${age}.
+Pour les 6-9 ans: mots simples, exemples concrets (bonbons, jouets, animaux).
+Pour les 10-12 ans: exemples pratiques (argent, sports, nature).
+Pour les 13-14 ans: connexions avec la vraie vie et le numérique.
+
+Réponds UNIQUEMENT avec un JSON valide, sans markdown, sans backticks, ce format exact:
+{
+  "symbol": "un emoji ou symbole mathématique pertinent",
+  "title": "titre court et accrocheur (5 mots max)",
+  "intro": "une phrase surprenante qui accroche l'enfant (max 20 mots)",
+  "sections": [
+    {"icon":"emoji","title":"titre court","text":"explication en 2-3 phrases simples"},
+    {"icon":"emoji","title":"titre court","text":"explication en 2-3 phrases simples"},
+    {"icon":"emoji","title":"titre court","text":"explication en 2-3 phrases simples"},
+    {"icon":"emoji","title":"titre court","text":"connexion avec Bitcoin ou la vie numérique (2 phrases)"}
+  ]
+}`;
+
   try{
-    const res=await fetch('https://api.anthropic.com/v1/messages',{
+    const resp=await fetch('https://api.anthropic.com/v1/messages',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
         model:'claude-sonnet-4-20250514',
-        max_tokens:700,
-        messages:[{
-          role:'user',
-          content:`Tu es un tuteur de mathématiques passionné, parlant à un élève québécois (primaire ou secondaire). Le sujet du fait affiché : "${_currentFactTopic}". Réponds UNIQUEMENT avec un objet JSON valide, sans markdown, sans backtick, sans explication hors JSON. Structure exacte : {"exemple":"exemple concret du quotidien en 1-2 phrases simples","bitcoin":"connexion avec Bitcoin ou la cryptographie en 2 phrases accessibles","defi":"un mini-défi mental amusant pour l'élève, 1 phrase"}`
-        }]
+        max_tokens:1000,
+        messages:[{role:'user',content:prompt}]
       })
     });
-    const data=await res.json();
-    const raw=data.content.map(b=>b.text||'').join('').replace(/```json|```/g,'').trim();
-    const p=JSON.parse(raw);
-    expand.innerHTML=`
-      <p class="exp-label">↗ exemple concret</p>
-      <p class="exp-txt">${p.exemple}</p>
-      <p class="exp-label">⚡ connexion bitcoin</p>
-      <p class="exp-txt">${p.bitcoin}</p>
-      <p class="exp-label">🧠 mini-défi</p>
-      <p class="exp-txt">${p.defi}</p>
-    `;
-    btn.textContent='✦ réduire';
-    btn.removeAttribute('disabled');
-    btn.onclick=()=>{
-      expand.style.display='none';
-      btn.textContent='✦ en savoir plus';
-      btn.onclick=loadMoreFact;
-    };
+    const data=await resp.json();
+    const raw=data.content?.[0]?.text||'';
+    // Nettoyer si besoin
+    const clean=raw.replace(/```json|```/g,'').trim();
+    const parsed=JSON.parse(clean);
+    return parsed;
   }catch(e){
-    expand.innerHTML='<p class="exp-txt" style="color:rgba(255,80,80,0.6);">Connexion impossible. Réessaie!</p>';
-    btn.textContent='✦ réessayer';
-    btn.removeAttribute('disabled');
-    btn.onclick=loadMoreFact;
+    // Fallback sur les faits statiques si l'API échoue
+    const fallback=getFactsForLevel(G.level);
+    const f=fallback[rand(0,fallback.length-1)];
+    return{
+      symbol:f.s, title:f.t, intro:f.tx,
+      sections:f.deep.map(d=>({icon:d.icon,title:d.ttl,text:d.txt}))
+    };
   }
 }
 
-function closeFact(){
-  document.getElementById('factExpand').style.display='none';
-  hideOv('factOverlay');
-  G.locked=false;nextQ();
+// ══════════ BREAK CYCLE (toutes les 5 bonnes réponses) ══════════
+function showBreak(){
+  G.cycleCorrect=0;
+
+  // Stats progression
+  document.getElementById('breakSats').textContent='+'+SATS_CYCLE;
+  const pct=Math.min(100,(G.dailyQCount/DAILY_MAX)*100);
+  document.getElementById('breakProgFill').style.width=pct+'%';
+  document.getElementById('breakStats').textContent=
+    G.dailyQCount+' / '+DAILY_MAX+' questions aujourd\'hui · '+
+    Math.round(G.levelProgress/ANNUAL_MAX*100)+'% de l\'année';
+
+  // Afficher loading, cacher boutons
+  document.getElementById('breakLoading').style.display='flex';
+  document.getElementById('breakBtns').style.display='none';
+  document.getElementById('breakLoadingTxt').textContent='l\'univers réfléchit...';
+
+  showOv('breakOverlay');
+
+  // Appel API en parallèle
+  generateAIFact().then(fact=>{
+    G_aiFact=fact;
+    // Mettre à jour le bouton avec le titre généré
+    document.getElementById('breakLearnBtn').textContent=
+      (fact.symbol||'✨')+' '+( fact.title||'En savoir plus')+' →';
+    // Cacher loading, montrer boutons
+    document.getElementById('breakLoading').style.display='none';
+    document.getElementById('breakBtns').style.display='flex';
+  });
 }
+
+function closeBreak(){
+  hideOv('breakOverlay');
+  G.locked=false;
+  nextQ();
+}
+
+function breakOpenDeep(){
+  if(!G_aiFact)return closeBreak();
+  hideOv('breakOverlay');
+
+  const f=G_aiFact;
+  document.getElementById('dSym').textContent=f.symbol||'✨';
+  document.getElementById('dTitle').textContent=f.title||'Exploration';
+
+  const sec=document.getElementById('deepSections');
+  sec.innerHTML='';
+
+  // Intro
+  if(f.intro){
+    sec.innerHTML+=`<div class="deep-section" style="border-color:rgba(255,216,111,0.15);">
+      <div class="deep-stxt" style="color:rgba(255,255,255,0.75);font-style:italic;">${f.intro}</div>
+    </div>`;
+  }
+
+  // 4 sections
+  (f.sections||[]).forEach(s=>{
+    sec.innerHTML+=`<div class="deep-section">
+      <div class="deep-stl"><span class="deep-icon">${s.icon||'•'}</span>${s.title||''}</div>
+      <div class="deep-stxt">${s.text||''}</div>
+    </div>`;
+  });
+
+  // Bouton retour
+  document.getElementById('deepCard').querySelector('.ov-btn').onclick=()=>{
+    hideOv('deepOverlay');G.locked=false;nextQ();
+  };
+  showOv('deepOverlay');
+  sndSecret();
+}
+
+// ══════════ DAILY LIMIT ══════════
+function showDailyLimit(){
+  document.getElementById('limitTxt').textContent=
+    'Tu as répondu à '+G.dailyQCount+' questions aujourd\'hui. C\'est ta mission quotidienne accomplie!\nReviens demain pour continuer ton année scolaire.';
+  showOv('limitOverlay');
+}
+
+// ══════════ FACT (gardé pour l'overlay deep standalone) ══════════
+let G_currentFact=null;
+function showFact(){
+  G_currentFact=FACTS[rand(0,FACTS.length-1)];
+  document.getElementById('fSym').textContent=G_currentFact.s;
+  document.getElementById('fTtl').textContent=G_currentFact.t;
+  document.getElementById('fTxt').textContent=G_currentFact.tx;
+  showOv('factOverlay');
+}
+function closeFact(){hideOv('factOverlay');G.locked=false;nextQ();}
+
+function openDeep(){
+  if(!G_currentFact||!G_currentFact.deep)return;
+  hideOv('factOverlay');
+  document.getElementById('dSym').textContent=G_currentFact.s;
+  document.getElementById('dTitle').textContent=G_currentFact.t;
+  const sec=document.getElementById('deepSections');
+  sec.innerHTML='';
+  G_currentFact.deep.forEach(d=>{
+    sec.innerHTML+=`<div class="deep-section">
+      <div class="deep-stl"><span class="deep-icon">${d.icon}</span>${d.ttl}</div>
+      <div class="deep-stxt">${d.txt}</div>
+    </div>`;
+  });
+  showOv('deepOverlay');
+  sndSecret();
+}
+function closeDeep(){hideOv('deepOverlay');G.locked=false;nextQ();}
 
 // ══════════ LEVEL UP ══════════
 function doLvlUp(){
-  G.level=Math.min(G.level+1,LEVELS.length-1);patchSave({level:G.level});const l=getLvl();
+  G.level=Math.min(G.level+1,LEVELS.length-1);
+  G.levelProgress=0;
+  patchSave({level:G.level,levelProgress:0});
+  const l=getLvl();
   document.getElementById('luNum').textContent=G.level+1;
   document.getElementById('luName').textContent=l.name;
-  document.getElementById('luDesc').textContent=l.desc;
+  document.getElementById('luDesc').textContent='📚 '+l.grade+' — '+l.desc+'\n'+ANNUAL_MAX.toLocaleString()+' questions cette année.';
+  // Mega confetti au centre
+  burstConfetti(innerWidth/2,innerHeight/2,80);
+  burstStars(innerWidth/2,innerHeight/2);
+  updateCreature();
   sndLvlUp();showOv('lvlupOverlay');
 }
 function closeLvlUp(){hideOv('lvlupOverlay');updateHUD();G.locked=false;nextQ();}
@@ -710,45 +1631,67 @@ function triggerSecret(idx){
   document.getElementById('secSym').textContent=s.s;
   document.getElementById('secTtl').textContent=s.t;
   document.getElementById('secTxt').textContent=s.tx;
-  sndSecret();showOv('secretOverlay');renderProfile();
+  sndSecret();showOv('secretOverlay');
+  renderProfile();
 }
 function showSecret(){
-  const d=getSave();const idx=d.secretsFound.length>0?d.secretsFound[rand(0,d.secretsFound.length-1)]:rand(0,SECRETS.length-1);
+  const d=getSave();
+  const idx=d.secretsFound.length>0?d.secretsFound[rand(0,d.secretsFound.length-1)]:rand(0,SECRETS.length-1);
   triggerSecret(idx);
 }
 function closeSecret(){hideOv('secretOverlay');G.locked=false;if(document.getElementById('s-game').classList.contains('active'))nextQ();}
 
 // ══════════ DAILY CHALLENGE ══════════
 function showDaily(){
-  const d=getSave();const today=new Date().toDateString();const done=d.dailyDate===today&&d.dailyDone;
-  if(done){document.getElementById('dailyDesc').textContent='Défi déjà complété aujourd\'hui. Reviens demain!';document.getElementById('dailyRewardTxt').textContent='✓ Bonus réclamé';document.getElementById('dailyTimerWrap').style.display='none';}
-  else{document.getElementById('dailyDesc').textContent='10 questions · 60 secondes · niveau actuel';document.getElementById('dailyRewardTxt').textContent='+50 ⚡ bonus';document.getElementById('dailyTimerWrap').style.display='none';}
+  const d=getSave();
+  const today=new Date().toDateString();
+  const done=d.dailyDate===today&&d.dailyDone;
+  if(done){
+    document.getElementById('dailyDesc').textContent='Défi déjà complété aujourd\'hui. Reviens demain!';
+    document.getElementById('dailyRewardTxt').textContent='✓ Bonus réclamé';
+    document.getElementById('dailyTimerWrap').style.display='none';
+  } else {
+    document.getElementById('dailyDesc').textContent='10 questions · 60 secondes · niveau actuel';
+    document.getElementById('dailyRewardTxt').textContent='+50 ⚡ bonus';
+    document.getElementById('dailyTimerWrap').style.display='none';
+  }
   showOv('dailyOverlay');
 }
 let dailyTimerInt=null;
 function startDaily(){
-  const d=getSave();const today=new Date().toDateString();
+  const d=getSave();
+  const today=new Date().toDateString();
   if(d.dailyDate===today&&d.dailyDone){hideOv('dailyOverlay');return;}
-  hideOv('dailyOverlay');G.isDailyActive=true;G.dailyQ=0;G.dailyCorrect=0;
+  hideOv('dailyOverlay');
+  G.isDailyActive=true;G.dailyQ=0;G.dailyCorrect=0;
+
+  // Start game in normal mode if not already in game
   if(!document.getElementById('s-game').classList.contains('active')){
     G.sats=d.sats;G.streak=0;G.level=d.level;G.qCount=0;G.locked=false;G.mode='normal';
     document.getElementById('timerNum').style.display='none';
     document.getElementById('timerFill').style.background='var(--violet)';
     startWormhole(()=>{show('s-game');updateHUD();nextQ();});
-  }else{G.locked=false;nextQ();}
+  } else {
+    G.locked=false;nextQ();
+  }
   sndDaily();
 }
 function finishDaily(){
-  G.isDailyActive=false;clearInterval(dailyTimerInt);
-  const today=new Date().toDateString();const bonus=50;G.sats+=bonus;
+  G.isDailyActive=false;
+  clearInterval(dailyTimerInt);
+  const today=new Date().toDateString();
+  const bonus=50;
+  G.sats+=bonus;
   patchSave({sats:G.sats,dailyDate:today,dailyDone:true});
   document.getElementById('dailyDoneTxt').textContent=`${G.dailyCorrect}/10 correctes · +${bonus} ⚡ bonus ajouté à ton compte!`;
-  sndLvlUp();showOv('dailyDoneOverlay');renderProfile();
+  sndLvlUp();showOv('dailyDoneOverlay');
+  renderProfile();
 }
 function closeDailyDone(){hideOv('dailyDoneOverlay');updateHUD();G.locked=false;nextQ();}
 
 // ══════════ INIT ══════════
-checkName();renderProfile();
+checkName();
+renderProfile();
 </script>
 </body>
 </html>
