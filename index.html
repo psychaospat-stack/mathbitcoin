@@ -4,6 +4,8 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
 <title>MathBitcoin — Le Langage de l'Univers</title>
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3982413989310016" crossorigin="anonymous"></script>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@300;400;700&family=Exo+2:wght@200;300;400;600&display=swap" rel="stylesheet"/>
 <style>
 :root{
@@ -367,11 +369,18 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ex
   <div class="ans-wrap"><div class="answers" id="ansGrid"></div></div>
   <div class="prog-wrap"><div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div></div>
   <div class="ad-zone">
-    <!-- REMPLACE PAR TON TAG ADSENSE :
-    <ins class="adsbygoogle" style="display:inline-block;width:320px;height:50px"
-      data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX"></ins>
-    -->
-    <div class="ad-slot">espace adsense</div>
+    <div style="width:320px;height:50px;position:relative;">
+      <div style="position:absolute;inset:0;background:rgba(255,255,255,0.015);
+        border:1px dashed rgba(255,255,255,0.05);border-radius:8px;
+        display:flex;align-items:center;justify-content:center;
+        font-size:9px;letter-spacing:2px;color:rgba(255,255,255,0.08);
+        text-transform:uppercase;">espace publicitaire</div>
+      <ins class="adsbygoogle"
+        style="display:inline-block;width:320px;height:50px;position:relative;z-index:1;"
+        data-ad-client="ca-pub-3982413989310016"
+        data-ad-slot="SLOT_BANNIERE"></ins>
+      <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+    </div>
   </div>
 </div>
 
@@ -442,18 +451,103 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Ex
   </div>
 </div>
 
-<!-- BREAK CYCLE — toutes les 5 bonnes réponses -->
+<!-- REWARDED AD — pub 30 secondes avant les sats -->
+<div class="overlay" id="adOverlay">
+  <div style="background:#000;border:1px solid rgba(255,255,255,0.08);border-radius:20px;
+    padding:0;max-width:340px;width:92%;overflow:hidden;">
+
+    <!-- Zone vidéo / pub -->
+    <div id="adVideoZone" style="width:100%;height:190px;background:#0a0a0a;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      position:relative;">
+
+      <!-- Placeholder pub — remplacer par tag vidéo réel -->
+      <div style="font-size:10px;letter-spacing:3px;color:rgba(255,255,255,0.12);
+        text-transform:uppercase;margin-bottom:8px;">publicité</div>
+      <div style="width:180px;height:50px;background:rgba(255,255,255,0.03);
+        border:1px dashed rgba(255,255,255,0.08);border-radius:8px;
+        display:flex;align-items:center;justify-content:center;">
+        <ins class="adsbygoogle"
+          style="display:inline-block;width:180px;height:50px;"
+          data-ad-client="ca-pub-3982413989310016"
+          data-ad-slot="SLOT_VIDEO"
+          data-ad-format="auto"></ins>
+        <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+      </div>
+
+      <!-- Compte à rebours dans le coin -->
+      <div id="adCountdown" style="position:absolute;top:10px;right:12px;
+        font-family:'Orbitron',sans-serif;font-size:12px;color:rgba(255,255,255,0.35);
+        letter-spacing:1px;">30</div>
+
+      <!-- Barre de progression pub -->
+      <div style="position:absolute;bottom:0;left:0;right:0;height:3px;
+        background:rgba(255,255,255,0.06);">
+        <div id="adBar" style="height:100%;width:0%;
+          background:linear-gradient(90deg,var(--violet),var(--gold));
+          transition:width 1s linear;"></div>
+      </div>
+    </div>
+
+    <!-- Récompense en dessous -->
+    <div style="padding:16px 20px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+        <div>
+          <div style="font-family:'Orbitron',sans-serif;font-size:9px;letter-spacing:3px;
+            color:rgba(255,255,255,0.25);text-transform:uppercase;margin-bottom:3px;">récompense</div>
+          <div style="font-family:'Orbitron',sans-serif;font-size:22px;font-weight:700;
+            color:var(--gold);">+5 ⚡</div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.2);letter-spacing:1px;">sats simulés · bêta</div>
+        </div>
+        <!-- Cercle compte à rebours visuel -->
+        <div style="position:relative;width:54px;height:54px;">
+          <svg width="54" height="54" style="transform:rotate(-90deg);">
+            <circle cx="27" cy="27" r="22" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="3"/>
+            <circle id="adRing" cx="27" cy="27" r="22" fill="none"
+              stroke="var(--gold)" stroke-width="3"
+              stroke-dasharray="138" stroke-dashoffset="0"
+              style="transition:stroke-dashoffset 1s linear;"/>
+          </svg>
+          <div id="adCountdown2" style="position:absolute;inset:0;display:flex;align-items:center;
+            justify-content:center;font-family:'Orbitron',sans-serif;font-size:13px;
+            font-weight:700;color:var(--gold);">30</div>
+        </div>
+      </div>
+
+      <!-- Barre progression journalière -->
+      <div style="height:2px;background:rgba(255,255,255,0.05);border-radius:2px;
+        overflow:hidden;margin-bottom:6px;">
+        <div id="adDailyBar" style="height:100%;background:linear-gradient(90deg,var(--violet),var(--gold));
+          border-radius:2px;transition:width 0.5s;width:0%"></div>
+      </div>
+      <div id="adDailyStats" style="font-size:10px;color:rgba(255,255,255,0.2);
+        letter-spacing:1px;margin-bottom:14px;text-align:center;">0 / 250 aujourd'hui</div>
+
+      <!-- Boutons — bloqués pendant la pub -->
+      <div id="adBtns" style="display:flex;gap:8px;opacity:0.3;pointer-events:none;">
+        <div class="ov-btn ov-btn-more" id="adLearnBtn" onclick="adOpenDeep()"
+          style="flex:1;text-align:center;font-size:11px;">En savoir plus →</div>
+        <div class="ov-btn" onclick="closeAdBreak()"
+          style="flex:1;text-align:center;font-size:11px;">continuer →</div>
+      </div>
+      <div id="adWaitTxt" style="text-align:center;font-size:10px;letter-spacing:2px;
+        color:rgba(255,255,255,0.2);text-transform:uppercase;margin-top:8px;">
+        regarde la pub pour débloquer tes sats
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BREAK CYCLE — après la pub -->
 <div class="overlay" id="breakOverlay">
   <div class="break-card">
     <div class="fact-ttl" style="margin-bottom:6px;">⚡ pause cosmique</div>
     <div class="break-sats" id="breakSats">+5</div>
     <div class="break-label">sats simulés · version bêta</div>
-    <div class="break-ad" id="breakAdSlot">espace annonce</div>
     <div class="break-progress">
       <div class="break-prog-fill" id="breakProgFill" style="width:0%"></div>
     </div>
     <div class="break-stats" id="breakStats">0 / 250 questions aujourd'hui</div>
-    <!-- État chargement IA -->
     <div class="break-ai-loading" id="breakLoading" style="display:none;">
       <div class="ai-spinner"></div>
       <div class="ai-status" id="breakLoadingTxt">l'univers réfléchit...</div>
@@ -587,41 +681,179 @@ function creatureShake(){
   setTimeout(()=>el.classList.remove('shake'),350);
 }
 
-// ══════════ AUDIO ENGINE ══════════
+// ══════════ AUDIO ENGINE — Space Downtempo ══════════
 let AC;
-function getAC(){if(!AC)AC=new(window.AudioContext||window.webkitAudioContext)();return AC;}
-function playTone(freq,dur,type='sine',vol=0.15,delay=0){
+function getAC(){
+  if(!AC)AC=new(window.AudioContext||window.webkitAudioContext)();
+  if(AC.state==='suspended')AC.resume();
+  return AC;
+}
+
+// Utilitaire : nœud de gain rapide
+function mkGain(ac,vol){const g=ac.createGain();g.gain.value=vol;g.connect(ac.destination);return g;}
+
+// Sub bass hit — kick cosmique
+function playKick(vol=0.35,delay=0){
+  try{
+    const ac=getAC();const t=ac.currentTime+delay;
+    const o=ac.createOscillator();const g=ac.createGain();
+    o.connect(g);g.connect(ac.destination);
+    o.type='sine';
+    o.frequency.setValueAtTime(140,t);
+    o.frequency.exponentialRampToValueAtTime(40,t+0.12);
+    g.gain.setValueAtTime(vol,t);
+    g.gain.exponentialRampToValueAtTime(0.001,t+0.25);
+    o.start(t);o.stop(t+0.25);
+  }catch(e){}
+}
+
+// Hi-hat feutré
+function playHat(vol=0.08,delay=0){
+  try{
+    const ac=getAC();const t=ac.currentTime+delay;
+    const buf=ac.createBuffer(1,ac.sampleRate*0.06,ac.sampleRate);
+    const d=buf.getChannelData(0);
+    for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1);
+    const src=ac.createBufferSource();src.buffer=buf;
+    const f=ac.createBiquadFilter();f.type='highpass';f.frequency.value=7000;
+    const g=ac.createGain();
+    src.connect(f);f.connect(g);g.connect(ac.destination);
+    g.gain.setValueAtTime(vol,t);
+    g.gain.exponentialRampToValueAtTime(0.001,t+0.06);
+    src.start(t);src.stop(t+0.06);
+  }catch(e){}
+}
+
+// Pad synthé ambient
+function playPad(freq,dur,vol=0.06,delay=0){
+  try{
+    const ac=getAC();const t=ac.currentTime+delay;
+    const o=ac.createOscillator();const g=ac.createGain();
+    o.connect(g);g.connect(ac.destination);
+    o.type='triangle';o.frequency.value=freq;
+    g.gain.setValueAtTime(0,t);
+    g.gain.linearRampToValueAtTime(vol,t+0.04);
+    g.gain.exponentialRampToValueAtTime(0.001,t+dur);
+    o.start(t);o.stop(t+dur);
+  }catch(e){}
+}
+
+// Click sec façon MPC
+function playClick(vol=0.12,delay=0){
+  try{
+    const ac=getAC();const t=ac.currentTime+delay;
+    const buf=ac.createBuffer(1,ac.sampleRate*0.025,ac.sampleRate);
+    const d=buf.getChannelData(0);
+    for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*(1-i/d.length);
+    const src=ac.createBufferSource();src.buffer=buf;
+    const f=ac.createBiquadFilter();f.type='bandpass';f.frequency.value=2200;f.Q.value=0.8;
+    const g=ac.createGain();
+    src.connect(f);f.connect(g);g.connect(ac.destination);
+    g.gain.setValueAtTime(vol,t);
+    src.start(t);src.stop(t+0.025);
+  }catch(e){}
+}
+
+// ══════════ RIFF PROGRESSIF — 5 notes / cycle ══════════
+const RIFFS=[
+  [110, 130.8, 146.8, 164.8, 196],
+  [146.8, 164.8, 174.6, 195.9, 220],
+  [174.6, 196, 220, 246.9, 293.7],
+  [196, 220, 246.9, 261.6, 293.7],
+  [164.8, 174.6, 196, 220, 246.9],
+];
+let G_riffIdx=0;
+
+function sndRiffNote(pos){
   try{
     const ac=getAC();
-    const o=ac.createOscillator();
-    const g=ac.createGain();
-    o.connect(g);g.connect(ac.destination);
-    o.type=type;o.frequency.setValueAtTime(freq,ac.currentTime+delay);
-    g.gain.setValueAtTime(vol,ac.currentTime+delay);
-    g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+delay+dur);
-    o.start(ac.currentTime+delay);o.stop(ac.currentTime+delay+dur);
+    const riff=RIFFS[G_riffIdx%RIFFS.length];
+    const freq=riff[pos];
+
+    if(pos===0||pos===2||pos===4) playKick(0.18+pos*0.02);
+    if(pos===1||pos===3) playHat(0.07);
+    playClick(0.07+pos*0.01, 0.01);
+    playPad(freq, 0.55-pos*0.04, 0.09+pos*0.01, 0.01);
+    playPad(freq*2, 0.3, 0.025, 0.03);
+
+    if(pos===4){
+      const root=riff[0];
+      setTimeout(()=>{
+        playKick(0.28);
+        playHat(0.09,0.06);
+        playPad(root,     0.8, 0.07, 0.05);
+        playPad(root*1.25,0.7, 0.06, 0.08);
+        playPad(root*1.5, 0.7, 0.06, 0.11);
+        playPad(root*2,   0.6, 0.05, 0.14);
+        playClick(0.10, 0.06);
+      }, 80);
+      G_riffIdx=Math.floor(Math.random()*RIFFS.length);
+    }
   }catch(e){}
 }
 function sndCorrect(){
-  playTone(523,0.12,'sine',0.12);
-  playTone(659,0.12,'sine',0.10,0.1);
-  playTone(784,0.18,'sine',0.10,0.2);
+  // Kick + hat décalé + pad cosmo
+  playKick(0.28);
+  playHat(0.07,0.05);
+  playPad(220,0.4,0.05);     // note basse
+  playPad(330,0.35,0.03,0.08); // accord mid
+  playClick(0.08,0.02);
 }
+
 function sndWrong(){
-  playTone(220,0.08,'sawtooth',0.08);
-  playTone(180,0.15,'sawtooth',0.07,0.09);
+  // Sub grave sourd
+  try{
+    const ac=getAC();const t=ac.currentTime;
+    const o=ac.createOscillator();const g=ac.createGain();
+    o.connect(g);g.connect(ac.destination);
+    o.type='sine';o.frequency.setValueAtTime(80,t);
+    o.frequency.exponentialRampToValueAtTime(55,t+0.18);
+    g.gain.setValueAtTime(0.2,t);
+    g.gain.exponentialRampToValueAtTime(0.001,t+0.22);
+    o.start(t);o.stop(t+0.22);
+    playHat(0.04,0.1);
+  }catch(e){}
 }
+
 function sndLvlUp(){
-  [523,659,784,1047].forEach((f,i)=>playTone(f,0.22,'sine',0.12,i*0.12));
+  // Montée downtempo — kick + accords en cascade
+  playKick(0.32,0);
+  playHat(0.06,0.08);
+  playPad(110,0.6,0.07,0);
+  playPad(165,0.5,0.06,0.12);
+  playPad(220,0.5,0.06,0.24);
+  playPad(330,0.55,0.08,0.36);
+  playKick(0.2,0.42);
+  playHat(0.07,0.5);
+  playPad(440,0.7,0.09,0.52);
 }
-function sndTick(){playTone(880,0.05,'sine',0.05);}
+
+function sndTick(){
+  // Hi-hat minimal
+  playHat(0.05);
+  playClick(0.05);
+}
+
 function sndSecret(){
-  playTone(440,0.3,'sine',0.08);
-  playTone(554,0.3,'sine',0.07,0.15);
-  playTone(659,0.5,'sine',0.09,0.3);
+  // Ambiant mystérieux — pads qui s'élèvent
+  playPad(130,1.2,0.06,0);
+  playPad(195,1.0,0.05,0.18);
+  playPad(260,0.9,0.05,0.36);
+  playKick(0.15,0.38);
+  playPad(390,0.8,0.06,0.52);
+  playHat(0.06,0.54);
 }
+
 function sndDaily(){
-  [392,523,659,784].forEach((f,i)=>playTone(f,0.25,'triangle',0.1,i*0.1));
+  // Groove de début de session
+  playKick(0.3,0);
+  playHat(0.06,0.1);
+  playPad(174,0.5,0.06,0.1);
+  playClick(0.08,0.2);
+  playKick(0.22,0.3);
+  playHat(0.07,0.4);
+  playPad(220,0.55,0.07,0.35);
+  playClick(0.07,0.45);
 }
 
 // ══════════ SAVE / LOAD ══════════
@@ -1343,7 +1575,7 @@ function answer(btn,chosen){
     btn.classList.add('ok');
     document.getElementById('uR1').classList.add('ok');
     setTimeout(()=>document.getElementById('uR1').classList.remove('ok'),800);
-    sndCorrect();
+    sndRiffNote(G.cycleCorrect-1); // joue la note du riff (0-4)
     // Confetti + creature bounce
     const rc=btn.getBoundingClientRect();
     burstConfetti(rc.left+rc.width/2, rc.top+rc.height/2, G.streak>2?50:32);
@@ -1372,10 +1604,10 @@ function answer(btn,chosen){
       setTimeout(()=>showDailyLimit(),700);return;
     }
 
-    // ── Fin d'un cycle de 5 bonnes réponses ──
+    // ── Fin d'un cycle de 5 bonnes réponses — pub 30s d'abord ──
     if(G.cycleCorrect>=CYCLE_SIZE){
       clearInterval(G.timerInt);
-      setTimeout(()=>showBreak(),700);return;
+      setTimeout(()=>showAdBreak(),700);return;
     }
 
     // ── Level up annuel (91 250 questions) ──
@@ -1501,11 +1733,78 @@ Réponds UNIQUEMENT avec un JSON valide, sans markdown, sans backticks, ce forma
   }
 }
 
-// ══════════ BREAK CYCLE (toutes les 5 bonnes réponses) ══════════
+// ══════════ REWARDED AD — 30 secondes ══════════
+let G_adTimer=null;
+
+function showAdBreak(){
+  // Stats journalières
+  const pct=Math.min(100,(G.dailyQCount/DAILY_MAX)*100);
+  document.getElementById('adDailyBar').style.width=pct+'%';
+  document.getElementById('adDailyStats').textContent=
+    G.dailyQCount+' / '+DAILY_MAX+' questions aujourd\'hui';
+
+  // Reset UI
+  const btns=document.getElementById('adBtns');
+  const waitTxt=document.getElementById('adWaitTxt');
+  btns.style.opacity='0.3';
+  btns.style.pointerEvents='none';
+  waitTxt.style.display='block';
+  document.getElementById('adBar').style.width='0%';
+  document.getElementById('adCountdown').textContent='30';
+  document.getElementById('adCountdown2').textContent='30';
+  document.getElementById('adRing').style.strokeDashoffset='0';
+
+  showOv('adOverlay');
+
+  // Lancer l'IA en parallèle
+  generateAIFact().then(fact=>{
+    G_aiFact=fact;
+    document.getElementById('adLearnBtn').textContent=
+      (fact.symbol||'✨')+' '+(fact.title||'En savoir plus')+' →';
+  });
+
+  // Compte à rebours 30 secondes
+  let sec=30;
+  clearInterval(G_adTimer);
+  G_adTimer=setInterval(()=>{
+    sec--;
+    const pct2=((30-sec)/30)*100;
+    document.getElementById('adBar').style.width=pct2+'%';
+    document.getElementById('adCountdown').textContent=sec;
+    document.getElementById('adCountdown2').textContent=sec;
+    // Cercle SVG — 138 = circonférence
+    const offset=138*(sec/30);
+    document.getElementById('adRing').style.strokeDashoffset=offset;
+
+    if(sec<=0){
+      clearInterval(G_adTimer);
+      // Débloquer les boutons
+      btns.style.opacity='1';
+      btns.style.pointerEvents='all';
+      waitTxt.style.display='none';
+      document.getElementById('adCountdown2').textContent='✓';
+      document.getElementById('adRing').style.stroke='var(--green)';
+      sndRiffNote(4); // note finale de résolution
+    }
+  },1000);
+}
+
+function closeAdBreak(){
+  clearInterval(G_adTimer);
+  hideOv('adOverlay');
+  // Montrer la pause cosmique avec les sats
+  showBreak();
+}
+
+function adOpenDeep(){
+  clearInterval(G_adTimer);
+  hideOv('adOverlay');
+  breakOpenDeep();
+}
+
+// ══════════ BREAK CYCLE (après la pub) ══════════
 function showBreak(){
   G.cycleCorrect=0;
-
-  // Stats progression
   document.getElementById('breakSats').textContent='+'+SATS_CYCLE;
   const pct=Math.min(100,(G.dailyQCount/DAILY_MAX)*100);
   document.getElementById('breakProgFill').style.width=pct+'%';
@@ -1513,23 +1812,16 @@ function showBreak(){
     G.dailyQCount+' / '+DAILY_MAX+' questions aujourd\'hui · '+
     Math.round(G.levelProgress/ANNUAL_MAX*100)+'% de l\'année';
 
-  // Afficher loading, cacher boutons
-  document.getElementById('breakLoading').style.display='flex';
-  document.getElementById('breakBtns').style.display='none';
-  document.getElementById('breakLoadingTxt').textContent='l\'univers réfléchit...';
-
-  showOv('breakOverlay');
-
-  // Appel API en parallèle
-  generateAIFact().then(fact=>{
-    G_aiFact=fact;
-    // Mettre à jour le bouton avec le titre généré
-    document.getElementById('breakLearnBtn').textContent=
-      (fact.symbol||'✨')+' '+( fact.title||'En savoir plus')+' →';
-    // Cacher loading, montrer boutons
+  if(G_aiFact){
     document.getElementById('breakLoading').style.display='none';
     document.getElementById('breakBtns').style.display='flex';
-  });
+    document.getElementById('breakLearnBtn').textContent=
+      (G_aiFact.symbol||'✨')+' '+(G_aiFact.title||'En savoir plus')+' →';
+  } else {
+    document.getElementById('breakLoading').style.display='flex';
+    document.getElementById('breakBtns').style.display='none';
+  }
+  showOv('breakOverlay');
 }
 
 function closeBreak(){
